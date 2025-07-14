@@ -43,14 +43,9 @@ You will use [Snowsight](https://docs.snowflake.com/en/user-guide/ui-snowsight.h
 2. Copy and paste the following code to create Snowflake objects (warehouse, database, schema) and click **Run All** at the top of the Worksheet
 ```
 USE ROLE accountadmin;
-
--- Create our Database
 CREATE OR REPLACE DATABASE cdc_prod;
-
--- Create our Schema
 CREATE OR REPLACE SCHEMA cdc_prod.analytics;
 
--- Create Data Science Warehouse
 CREATE OR REPLACE WAREHOUSE cdc_ds_wh
    WAREHOUSE_SIZE = 'xsmall'
    WAREHOUSE_TYPE = 'standard'
@@ -59,14 +54,9 @@ CREATE OR REPLACE WAREHOUSE cdc_ds_wh
    INITIALLY_SUSPENDED = TRUE
    COMMENT = 'data science warehouse for cdc';
 
--- Grants on Warehouse
 GRANT USAGE ON WAREHOUSE cdc_ds_wh TO ROLE accountadmin;
 GRANT OPERATE ON WAREHOUSE cdc_ds_wh TO ROLE accountadmin;
-
--- Use Warehouse
 USE WAREHOUSE cdc_ds_wh;
-
--- SQL Completion Note
 SELECT 'cdc sql is now complete' AS note;
 ```
 
