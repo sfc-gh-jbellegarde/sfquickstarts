@@ -236,12 +236,12 @@ Navigate to [Snowsight](https://docs.snowflake.com/en/user-guide/ui-snowsight.ht
 <img src="assets/mark_all_done.png">
 
 4. Click **Start configuration**
-5. If you have Event Tables already activated in your account, the **Event Log Database**, **Event Log Schema**, and **Event Table** will populate automatically with what is active. The names of the **Event Log Database**, **Event Log Schema**, and **Event Table** could be slightly different from what is shown.
-6. On the **Configure Connector** screen, select **Configure**
+
+5. On the **Configure Connector** screen, the **Compute Warehouse**, **Operational warehouse**, **Agent Role** and **User** will be predefined. Select **Configure**
 
 <img src="assets/configure_connector.png">
 
-7. On the **Verify Agent Connection** screen select **Generate file** to download the Agent Configuration file. The downloaded file name should resemble **snowflake.json**. Save this file for use during the Agent configuration section.
+6. On the **Verify Agent Connection** screen select **Generate file** to download the Agent Configuration file. The downloaded file name should resemble **snowflake.json**. Save this file for use during the Agent configuration section.
 
 <img src="assets/generate_file.png">
 
