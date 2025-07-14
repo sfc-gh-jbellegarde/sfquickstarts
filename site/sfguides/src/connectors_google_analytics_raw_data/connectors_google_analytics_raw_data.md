@@ -214,7 +214,7 @@ In this step, we will configure the OAuth Consent Screen.
 
 <img src="assets/roles.png">
 
-5. Click on the newly created service account and click on **ADD KEY** then **Create new key**.
+5. Click on the newly created service account and click on **Keys**, **ADD KEY** then **Create new key**.
 
 <img src="assets/created_service_account.png">
 
