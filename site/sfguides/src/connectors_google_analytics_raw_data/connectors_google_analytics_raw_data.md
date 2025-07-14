@@ -210,7 +210,7 @@ In this step, we will configure the OAuth Consent Screen.
 
 <img src="assets/service_account_name.png">
 
-4. Add all 3 of these roles one at a time by clicking on the dropdown list to select a role, and then click **+ ADD ANOTHER ROLE** to add the next role then click DONE: **BigQuery Data Viewer**, **BigQuery Read Session User** and **BigQuery Job User**.
+4. Add all 3 of these roles one at a time by clicking on the dropdown list to select a role, and then click **+ ADD ANOTHER ROLE** to add the next role then click **Done**: **BigQuery Data Viewer**, **BigQuery Read Session User** and **BigQuery Job User**.
 
 <img src="assets/roles.png">
 
