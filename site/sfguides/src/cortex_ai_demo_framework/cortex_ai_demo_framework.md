@@ -74,18 +74,16 @@ The setup script creates:
 
 Download these framework files from the GitHub repository:
 
-|| File | Purpose | Download Link |
-||------|---------|---------------|
-|| **Main Demo App** | Framework overview and pipeline demo | [cortex_framework_demo.py](https://github.com/Snowflake-Labs/sfguide-cortex-demo-developer-framework/blob/main/scripts/cortex_framework_demo.py) |
-|| **Visualizer App** | Interactive analytics dashboard | [cortex_framework_visualizer.py](https://github.com/Snowflake-Labs/sfguide-cortex-demo-developer-framework/blob/main/scripts/cortex_framework_visualizer.py) |
-|| **Framework Overview** | Pipeline explanation and framework tour | [ai_framework_step_0_framework_overview.py](https://github.com/Snowflake-Labs/sfguide-cortex-demo-developer-framework/blob/main/scripts/ai_framework_step_0_framework_overview.py) |
-|| **Synthetic Data Generator** | AI-powered data creation tool | [ai_framework_step_1_synthetic_data_generator.py](https://github.com/Snowflake-Labs/sfguide-cortex-demo-developer-framework/blob/main/scripts/ai_framework_step_1_synthetic_data_generator.py) |
-|| **Data Provider** | Data ingestion and management | [ai_framework_step_2_data_provider.py](https://github.com/Snowflake-Labs/sfguide-cortex-demo-developer-framework/blob/main/scripts/ai_framework_step_2_data_provider.py) |
-|| **Structured Tables** | Table structure and schema management | [ai_framework_step_3_structured_tables.py](https://github.com/Snowflake-Labs/sfguide-cortex-demo-developer-framework/blob/main/scripts/ai_framework_step_3_structured_tables.py) |
-|| **YAML Wizard** | SQL to YAML configuration converter | [ai_framework_step_4_yaml_wizard.py](https://github.com/Snowflake-Labs/sfguide-cortex-demo-developer-framework/blob/main/scripts/ai_framework_step_4_yaml_wizard.py) |
-|| **Semantic Model Creator** | Automated semantic model generation | [ai_framework_step_5_semantic_model_creator.py](https://github.com/Snowflake-Labs/sfguide-cortex-demo-developer-framework/blob/main/scripts/ai_framework_step_5_semantic_model_creator.py) |
-|| **Snow Demo** | Demo configuration and runner | [ai_framework_step_6_snow_demo.py](https://github.com/Snowflake-Labs/sfguide-cortex-demo-developer-framework/blob/main/scripts/ai_framework_step_6_snow_demo.py) |
-|| **Snow Viz** | Advanced visualization components | [ai_framework_step_7_snow_viz.py](https://github.com/Snowflake-Labs/sfguide-cortex-demo-developer-framework/blob/main/scripts/ai_framework_step_7_snow_viz.py) |
+| File | Purpose | Download Link |
+|------|---------|---------------|
+| **Framework Overview** | Pipeline explanation and framework tour | [ai_framework_step_0_framework_overview.py](https://github.com/Snowflake-Labs/sfguide-cortex-ai-demo-framework/blob/main/scripts/ai_framework_step_0_framework_overview.py) |
+| **Synthetic Data Generator** | AI-powered data creation tool | [ai_framework_step_1_synthetic_data_generator.py](https://github.com/Snowflake-Labs/sfguide-cortex-ai-demo-framework/blob/main/scripts/ai_framework_step_1_synthetic_data_generator.py) |
+| **Data Provider** | Data ingestion and management | [ai_framework_step_2_data_provider.py](https://github.com/Snowflake-Labs/sfguide-cortex-ai-demo-framework/blob/main/scripts/ai_framework_step_2_data_provider.py) |
+| **Structured Tables** | Table structure and schema management | [ai_framework_step_3_structured_tables.py](https://github.com/Snowflake-Labs/sfguide-cortex-ai-demo-framework/blob/main/scripts/ai_framework_step_3_structured_tables.py) |
+| **YAML Wizard** | SQL to YAML configuration converter | [ai_framework_step_4_yaml_wizard.py](https://github.com/Snowflake-Labs/sfguide-cortex-ai-demo-framework/blob/main/scripts/ai_framework_step_4_yaml_wizard.py) |
+| **Semantic Model Creator** | Automated semantic model generation | [ai_framework_step_5_semantic_model_creator.py](https://github.com/Snowflake-Labs/sfguide-cortex-ai-demo-framework/blob/main/scripts/ai_framework_step_5_semantic_model_creator.py) |
+| **Snow Demo** | Demo configuration and runner | [ai_framework_step_6_snow_demo.py](https://github.com/Snowflake-Labs/sfguide-cortex-ai-demo-framework/blob/main/scripts/ai_framework_step_6_snow_demo.py) |
+| **Snow Viz** | Advanced visualization components | [ai_framework_step_7_snow_viz.py](https://github.com/Snowflake-Labs/sfguide-cortex-ai-demo-framework/blob/main/scripts/ai_framework_step_7_snow_viz.py) |
 
 ### Step 3: Upload Framework Files to Stages
 
