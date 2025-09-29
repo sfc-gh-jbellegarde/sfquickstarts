@@ -13,37 +13,35 @@ tags: Getting Started, Cortex, AI, Demo Development, Framework
 ## Overview
 Duration: 5
 
-The Cortex AI Demo Framework enables rapid creation of sophisticated demo applications using Snowflake Cortex AI. This framework transforms what traditionally takes weeks of development into a 5-minute setup process.
+Demo development is crucial for businesses to showcase their AI capabilities and win new customers. Through rapid prototyping and professional presentation tools, businesses can transform weeks of development into minutes of setup, dramatically accelerating sales cycles and proof-of-concept delivery.
 
-In this Quickstart, you will build a complete demo development platform that includes:
-- **Synthetic Data Generator** - AI-powered realistic data creation
-- **Cortex Search Service** - Semantic search capabilities  
-- **Cortex Analyst Integration** - Natural language query interface
-- **Snow Visualizer** - Reusable dashboard components
-- **YAML Wizard** - Automated semantic model creation
+In this Quickstart, we will build a comprehensive demo development platform called "Cortex AI Demo Framework". This demonstrates how to use Snowflake Cortex AI functions to create synthetic data, build interactive analytics, deploy search capabilities, and generate complete demonstration environments.
 
-This Quickstart demonstrates the complete framework with:
-- **Multi-component demo platform** with data generation, analytics, and visualization tools
-- **AI-powered workflows** using all Cortex functions (SENTIMENT, EXTRACT_ANSWER, COMPLETE)
-- **Reusable templates** for rapid demo creation across any use case
-- **Interactive Streamlit applications** with professional UI/UX
-- **Production-ready architecture** with proper data layer organization
+This Quickstart showcases the complete Cortex AI Demo Framework with:
+- **8-application integrated demo platform** with Framework Overview, Synthetic Data Generator, Data Provider, Structured Tables, YAML Wizard, Semantic Model Creator, Demo Orchestrator, and Advanced Visualizations
+- **AI-powered data generation** using all Cortex functions
+- **Advanced semantic search** and automated model creation
+- **Cortex Search Service** for intelligent data discovery
+- **Cortex Analyst integration** for natural language queries
+- **Production-ready applications** with professional UI/UX
+
 
 ### What You Will Build
-- Complete demo development framework platform
-- AI-powered synthetic data generation system
-- Advanced analytics and visualization components
-- Interactive Cortex Search and Analyst integration
-- Multiple Streamlit applications for different use cases
-- Reusable templates for future demos
+- Complete 8-application integrated demo platform
+- AI-powered synthetic data generation system using Cortex functions
+- Advanced semantic modeling and search capabilities
+- Professional demo orchestration and configuration tools
+- Interactive Cortex Search Service for semantic discovery
+- Production-ready Streamlit applications with advanced visualizations
+- Reusable framework for rapid demo creation across any industry
 
 ### What You Will Learn
-- How to set up a scalable demo development framework
-- How to use Snowflake Notebooks for complex AI workflows
-- How to implement all Cortex AI functions in a production setting
-- How to build reusable dashboard and analytics components
-- How to create automated semantic models and YAML configurations
-- How to deploy multiple interactive Streamlit applications
+- How to set up a production demo development pipeline with Snowflake
+- How to use Snowflake Notebooks for complex AI demo workflows
+- How to implement all Cortex AI functions (SENTIMENT, EXTRACT_ANSWER, COMPLETE)
+- How to build scalable demo platforms with synthetic data
+- How to create automated semantic models and search services
+- How to deploy interactive Streamlit applications in Snowflake
 
 ### Prerequisites
 - Familiarity with Python and SQL
@@ -74,16 +72,16 @@ The setup script creates:
 
 Download these framework files from the GitHub repository:
 
-| File | Purpose | Download Link |
-|------|---------|---------------|
-| **Framework Overview** | Pipeline explanation and framework tour | [ai_framework_step_0_framework_overview.py](https://github.com/Snowflake-Labs/sfguide-cortex-ai-demo-framework/blob/main/scripts/ai_framework_step_0_framework_overview.py) |
-| **Synthetic Data Generator** | AI-powered data creation tool | [ai_framework_step_1_synthetic_data_generator.py](https://github.com/Snowflake-Labs/sfguide-cortex-ai-demo-framework/blob/main/scripts/ai_framework_step_1_synthetic_data_generator.py) |
-| **Data Provider** | Data ingestion and management | [ai_framework_step_2_data_provider.py](https://github.com/Snowflake-Labs/sfguide-cortex-ai-demo-framework/blob/main/scripts/ai_framework_step_2_data_provider.py) |
-| **Structured Tables** | Table structure and schema management | [ai_framework_step_3_structured_tables.py](https://github.com/Snowflake-Labs/sfguide-cortex-ai-demo-framework/blob/main/scripts/ai_framework_step_3_structured_tables.py) |
-| **YAML Wizard** | SQL to YAML configuration converter | [ai_framework_step_4_yaml_wizard.py](https://github.com/Snowflake-Labs/sfguide-cortex-ai-demo-framework/blob/main/scripts/ai_framework_step_4_yaml_wizard.py) |
-| **Semantic Model Creator** | Automated semantic model generation | [ai_framework_step_5_semantic_model_creator.py](https://github.com/Snowflake-Labs/sfguide-cortex-ai-demo-framework/blob/main/scripts/ai_framework_step_5_semantic_model_creator.py) |
-| **Snow Demo** | Demo configuration and runner | [ai_framework_step_6_snow_demo.py](https://github.com/Snowflake-Labs/sfguide-cortex-ai-demo-framework/blob/main/scripts/ai_framework_step_6_snow_demo.py) |
-| **Snow Viz** | Advanced visualization components | [ai_framework_step_7_snow_viz.py](https://github.com/Snowflake-Labs/sfguide-cortex-ai-demo-framework/blob/main/scripts/ai_framework_step_7_snow_viz.py) |
+| File | Purpose |
+|------|---------|
+| [**Framework Overview**](https://github.com/Snowflake-Labs/sfguide-cortex-ai-demo-framework/blob/main/scripts/ai_framework_step_0_framework_overview.py) | Pipeline explanation and framework tour |
+| [**Synthetic Data Generator**](https://github.com/Snowflake-Labs/sfguide-cortex-ai-demo-framework/blob/main/scripts/ai_framework_step_1_synthetic_data_generator.py) | AI-powered data creation tool |
+| [**Data Provider**](https://github.com/Snowflake-Labs/sfguide-cortex-ai-demo-framework/blob/main/scripts/ai_framework_step_2_data_provider.py) | Data ingestion and management |
+| [**Structured Tables**](https://github.com/Snowflake-Labs/sfguide-cortex-ai-demo-framework/blob/main/scripts/ai_framework_step_3_structured_tables.py) | Table structure and schema management |
+| [**YAML Wizard**](https://github.com/Snowflake-Labs/sfguide-cortex-ai-demo-framework/blob/main/scripts/ai_framework_step_4_yaml_wizard.py) | SQL to YAML configuration converter |
+| [**Semantic Model Creator**](https://github.com/Snowflake-Labs/sfguide-cortex-ai-demo-framework/blob/main/scripts/ai_framework_step_5_semantic_model_creator.py) | Automated semantic model generation |
+| [**Snow Demo**](https://github.com/Snowflake-Labs/sfguide-cortex-ai-demo-framework/blob/main/scripts/ai_framework_step_6_snow_demo.py) | Demo configuration and runner |
+| [**Snow Viz**](https://github.com/Snowflake-Labs/sfguide-cortex-ai-demo-framework/blob/main/scripts/ai_framework_step_7_snow_viz.py) | Advanced visualization components |
 
 ### Step 3: Upload Framework Files to Stages
 
@@ -331,27 +329,14 @@ This will clean up all framework components while preserving any other work in y
 ## Conclusion and Resources
 Duration: 2
 
-Congratulations! You've successfully deployed the complete Cortex AI Demo Framework!
+Congratulations! You've successfully built the complete Cortex AI Demo Framework using Snowflake Cortex AI!
 
-### What You Accomplished
-- **Framework Deployment**: Complete demo development platform with 10 integrated applications
-- **Rapid Demo Creation**: Demonstrated 5-minute setup from idea to presentable demo
-- **AI Integration**: Full Cortex AI implementation with SENTIMENT, EXTRACT_ANSWER, COMPLETE, Search, and Analyst
-- **Visualization Platform**: Interactive dashboards and analytics with professional UI/UX
-- **Reusable Templates**: Framework ready for any industry or use case
-
-### Framework Impact
-- **Traditional Demo Development**: 3-4 weeks of development time
-- **Framework-Powered Development**: ~5 minutes from idea to demo
-- **Efficiency Gain**: 99%+ reduction in demo creation time
-- **Reusability**: Single framework supports unlimited use cases
-
-### Use the Framework
-The framework is now ready for your demo creation needs:
-- **Customer Presentations**: Use any application for professional demos
-- **POC Development**: Rapidly prototype solutions for prospects
-- **Training**: Demonstrate Snowflake Cortex capabilities effectively
-- **Innovation**: Experiment with new use cases quickly
+### What You Learned
+- **8-Application Demo Platform**: How to build Framework Overview, Synthetic Data Generator, Data Provider, Structured Tables, YAML Wizard, Semantic Model Creator, Demo Orchestrator, and Advanced Visualizations
+- **Advanced AI Processing**: How to implement complete Cortex AI integration with SENTIMENT, EXTRACT_ANSWER, and COMPLETE functions
+- **Cortex Search Service**: How to create semantic search across synthetic data with natural language queries
+- **Production-Ready Streamlit Apps**: How to develop complete interactive demo platform with advanced visualizations
+- **Rapid Demo Development**: How to transform weeks of development into minutes of setup
 
 ### Resources
 - [Snowflake Cortex AI Functions](https://docs.snowflake.com/user-guide/snowflake-cortex/llm-functions)
@@ -359,11 +344,3 @@ The framework is now ready for your demo creation needs:
 - [Cortex Analyst](https://docs.snowflake.com/en/user-guide/snowflake-cortex/cortex-analyst)
 - [Streamlit in Snowflake](https://docs.snowflake.com/developer-guide/streamlit/about-streamlit)
 - [Snowflake Notebooks](https://docs.snowflake.com/en/user-guide/ui-snowsight/notebooks)
-
-### Next Steps
-- Explore each framework application to understand its capabilities
-- Create your first custom demo using the framework workflow
-- Extend the framework with industry-specific components
-- Share the framework with your team for collaborative demo development
-
-**Start building your next demo in under 5 minutes!**
