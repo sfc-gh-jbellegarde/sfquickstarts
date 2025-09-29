@@ -1,19 +1,19 @@
 author: Joviane Bellegarde
-id: cortex_demo_developer_framework
-summary: Cortex Demo Developer Framework - Build sophisticated Cortex-powered demos in ~5 minutes
+id: cortex_ai_demo_framework
+summary: Cortex AI Demo Framework - Build sophisticated Cortex-powered demos in ~5 minutes
 categories: Cortex, AI, Demo Development, Getting-Started
 environments: web
 status: Published
 feedback link: https://github.com/Snowflake-Labs/sfguides/issues
 tags: Getting Started, Cortex, AI, Demo Development, Framework
 
-# Cortex Demo Developer Framework
+# Cortex AI Demo Framework
 <!-- ------------------------ -->
 
 ## Overview
 Duration: 5
 
-The Cortex Demo Developer Framework enables rapid creation of sophisticated demo applications using Snowflake Cortex AI. This framework transforms what traditionally takes weeks of development into a 5-minute setup process.
+The Cortex AI Demo Framework enables rapid creation of sophisticated demo applications using Snowflake Cortex AI. This framework transforms what traditionally takes weeks of development into a 5-minute setup process.
 
 In this Quickstart, you will build a complete demo development platform that includes:
 - **Synthetic Data Generator** - AI-powered realistic data creation
@@ -284,7 +284,7 @@ Duration: 5
 
 ### Technical Architecture
 
-The Cortex Demo Developer Framework follows a layered architecture:
+The Cortex AI Demo Framework follows a layered architecture:
 
 #### **Data Layers**
 - **Bronze Layer**: Raw data ingestion and synthetic data generation
@@ -333,7 +333,7 @@ This will clean up all framework components while preserving any other work in y
 ## Conclusion and Resources
 Duration: 2
 
-Congratulations! You've successfully deployed the complete Cortex Demo Developer Framework!
+Congratulations! You've successfully deployed the complete Cortex AI Demo Framework!
 
 ### What You Accomplished
 - **Framework Deployment**: Complete demo development platform with 10 integrated applications
