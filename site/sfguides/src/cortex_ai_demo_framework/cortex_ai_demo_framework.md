@@ -82,6 +82,7 @@ Download these framework files from the GitHub repository:
 | [**Semantic Model Creator**](https://github.com/Snowflake-Labs/sfguide-cortex-ai-demo-framework/blob/main/scripts/ai_framework_step_5_semantic_model_creator.py) | Automated semantic model generation |
 | [**Snow Demo**](https://github.com/Snowflake-Labs/sfguide-cortex-ai-demo-framework/blob/main/scripts/ai_framework_step_6_snow_demo.py) | Demo configuration and runner |
 | [**Snow Viz**](https://github.com/Snowflake-Labs/sfguide-cortex-ai-demo-framework/blob/main/scripts/ai_framework_step_7_snow_viz.py) | Advanced visualization components |
+| [**Environment File**](https://github.com/Snowflake-Labs/sfguide-cortex-ai-demo-framework/blob/main/scripts/environment.yml) | Conda environment for Streamlit dependencies |
 
 ### Step 3: Upload Framework Files to Stages
 
@@ -95,7 +96,7 @@ Download these framework files from the GitHub repository:
 
 4. Click `Enable Directory Table`
 
-5. Upload all 10 Python files downloaded above to this stage
+5. Upload all 8 Python framework files and the environment.yml file downloaded above to this stage
 
 ### Step 4: Import the Framework Setup Notebook
 
@@ -130,7 +131,7 @@ Duration: 8
 **What the notebook does:**
 - Creates sample customer survey data tables
 - Processes data with Cortex AI functions (SENTIMENT, EXTRACT_ANSWER, COMPLETE)
-- Deploys all 10 Streamlit applications from the uploaded stage files
+- Deploys all 8 Streamlit applications from the uploaded stage files using environment.yml for dependencies
 - Sets up the complete framework for immediate demo creation
 
 The notebook processes sample data and deploys the complete framework application suite.
