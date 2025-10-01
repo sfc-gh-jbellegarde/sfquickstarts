@@ -18,7 +18,7 @@ Demo development is crucial for businesses to showcase their AI capabilities and
 In this Quickstart, we will build a comprehensive demo development platform called "Cortex AI Demo Framework". This demonstrates how to use Snowflake Cortex AI functions to create synthetic data, build interactive analytics, deploy search capabilities, and generate complete demonstration environments.
 
 This Quickstart showcases the complete Cortex AI Demo Framework with:
-- **8-application integrated demo platform** with Framework Overview, Synthetic Data Generator, Data Provider, Structured Tables, YAML Wizard, Semantic Model Creator, Demo Orchestrator, and Advanced Visualizations
+- **5-application integrated demo platform** with Synthetic Data Generator, Structured Tables, SQL to YAML Converter, Snow Demo, and Snow Viz
 - **AI-powered data generation** using all Cortex functions
 - **Advanced semantic search** and automated model creation
 - **Cortex Search Service** for intelligent data discovery
@@ -27,7 +27,7 @@ This Quickstart showcases the complete Cortex AI Demo Framework with:
 
 
 ### What You Will Build
-- Complete 8-application integrated demo platform
+- Complete 5-application integrated demo platform
 - AI-powered synthetic data generation system using Cortex functions
 - Advanced semantic modeling and search capabilities
 - Professional demo orchestration and configuration tools
@@ -74,45 +74,46 @@ Download these framework files from the GitHub repository:
 
 | File | Purpose |
 |------|---------|
-| [**Framework Overview**](https://github.com/Snowflake-Labs/sfguide-cortex-ai-demo-framework/blob/main/scripts/ai_framework_step_0_framework_overview.py) | Pipeline explanation and framework tour |
-| [**Synthetic Data Generator**](https://github.com/Snowflake-Labs/sfguide-cortex-ai-demo-framework/blob/main/scripts/ai_framework_step_1_synthetic_data_generator.py) | AI-powered data creation tool |
-| [**Data Provider**](https://github.com/Snowflake-Labs/sfguide-cortex-ai-demo-framework/blob/main/scripts/ai_framework_step_2_data_provider.py) | Data ingestion and management |
-| [**Structured Tables**](https://github.com/Snowflake-Labs/sfguide-cortex-ai-demo-framework/blob/main/scripts/ai_framework_step_3_structured_tables.py) | Table structure and schema management |
-| [**YAML Wizard**](https://github.com/Snowflake-Labs/sfguide-cortex-ai-demo-framework/blob/main/scripts/ai_framework_step_4_yaml_wizard.py) | SQL to YAML configuration converter |
-| [**Semantic Model Creator**](https://github.com/Snowflake-Labs/sfguide-cortex-ai-demo-framework/blob/main/scripts/ai_framework_step_5_semantic_model_creator.py) | Automated semantic model generation |
-| [**Snow Demo**](https://github.com/Snowflake-Labs/sfguide-cortex-ai-demo-framework/blob/main/scripts/ai_framework_step_6_snow_demo.py) | Demo configuration and runner |
-| [**Snow Viz**](https://github.com/Snowflake-Labs/sfguide-cortex-ai-demo-framework/blob/main/scripts/ai_framework_step_7_snow_viz.py) | Advanced visualization components |
-| [**Environment File**](https://github.com/Snowflake-Labs/sfguide-cortex-ai-demo-framework/blob/main/scripts/environment.yml) | Conda environment for Streamlit dependencies |
+| [**01_ai_framework_synthetic_data_generator.py**](https://github.com/Snowflake-Labs/sfguide-getting-started-with-cortex-ai-demo-framework/blob/main/scripts/01_ai_framework_synthetic_data_generator.py) | AI-powered synthetic data creation |
+| [**02_ai_framework_structured_tables.py**](https://github.com/Snowflake-Labs/sfguide-getting-started-with-cortex-ai-demo-framework/blob/main/scripts/02_ai_framework_structured_tables.py) | Data structuring and transformation |
+| [**03_ai_framework_sql_to_yaml_converter.py**](https://github.com/Snowflake-Labs/sfguide-getting-started-with-cortex-ai-demo-framework/blob/main/scripts/03_ai_framework_sql_to_yaml_converter.py) | SQL to YAML configuration converter |
+| [**04_ai_framework_snow_demo.py**](https://github.com/Snowflake-Labs/sfguide-getting-started-with-cortex-ai-demo-framework/blob/main/scripts/04_ai_framework_snow_demo.py) | Demo configuration and runner |
+| [**05_ai_framework_snow_viz.py**](https://github.com/Snowflake-Labs/sfguide-getting-started-with-cortex-ai-demo-framework/blob/main/scripts/05_ai_framework_snow_viz.py) | Advanced visualization components |
+| [**ai_framework_semantic_model.yaml**](https://github.com/Snowflake-Labs/sfguide-getting-started-with-cortex-ai-demo-framework/blob/main/scripts/ai_framework_semantic_model.yaml) | Semantic model configuration |
+| [**environment.yml**](https://github.com/Snowflake-Labs/sfguide-getting-started-with-cortex-ai-demo-framework/blob/main/scripts/environment.yml) | Conda environment for Streamlit dependencies |
 
 ### Step 3: Upload Framework Files to Stages
 
-1. In Snowsight, change your role to `CORTEX_FRAMEWORK_DATA_SCIENTIST`
+1. In Snowsight, change your role to `cortex_ai_demo_data_scientist`
 
-2. Navigate to `Catalog` → `Database Explorer` → `CORTEX_FRAMEWORK_DB` → `BRONZE_LAYER` → `Stages`
+2. Navigate to `Catalog` → `Database Explorer` → `AI_FRAMEWORK_DB` → `APPS` → `Stages`
 
-**Upload all framework applications:**
+**Upload framework applications to their respective stages:**
 
-3. Click on `FRAMEWORK_DATA_STAGE`
+3. For each stage, click `Enable Directory Table` and upload the corresponding files:
+   - `SYNTHETIC_DATA_GENERATOR_START_HERE`: Upload `01_ai_framework_synthetic_data_generator.py` and `environment.yml`
+   - `STRUCTURED_TABLES`: Upload `02_ai_framework_structured_tables.py` and `environment.yml`
+   - `SQL_TO_YAML_CONVERTER`: Upload `03_ai_framework_sql_to_yaml_converter.py` and `environment.yml`
+   - `SNOW_DEMO`: Upload `04_ai_framework_snow_demo.py` and `environment.yml`
+   - `SNOW_VIZ`: Upload `05_ai_framework_snow_viz.py` and `environment.yml`
 
-4. Click `Enable Directory Table`
-
-5. Upload all 8 Python framework files and the environment.yml file downloaded above to this stage
+4. Navigate to `AI_FRAMEWORK_DB` → `CONFIGS` → `Stages` → `FRAMEWORK_YAML_STAGE` and upload `ai_framework_semantic_model.yaml`
 
 ### Step 4: Import the Framework Setup Notebook
 
-1. **Download the notebook**: [cortex_framework_demo.ipynb](https://github.com/Snowflake-Labs/sfguide-cortex-demo-developer-framework/blob/main/notebooks/cortex_framework_demo.ipynb)
+1. **Download the notebook**: [cortex_ai_demo_framework_setup.ipynb](https://github.com/Snowflake-Labs/sfguide-getting-started-with-cortex-ai-demo-framework/blob/main/notebooks/cortex_ai_demo_framework_setup.ipynb)
 
 2. **Import into Snowflake**:
    - Navigate to `Projects` → `Notebooks` in Snowsight
    - Click the down arrow next to `+ Notebook` and select `Import .ipynb file`
-   - Choose `cortex_framework_demo.ipynb` from your downloads
+   - Choose `cortex_ai_demo_framework_setup.ipynb` from your downloads
 
 3. **Configure the notebook settings**:
-   - **Role**: Select `CORTEX_FRAMEWORK_DATA_SCIENTIST`
-   - **Database**: Select `CORTEX_FRAMEWORK_DB`
+   - **Role**: Select `cortex_ai_demo_data_scientist`
+   - **Database**: Select `AI_FRAMEWORK_DB`
    - **Schema**: Select `BRONZE_LAYER`  
-   - **Query Warehouse**: Select `CORTEX_FRAMEWORK_WH`
-   - **Notebook Warehouse**: Select `CORTEX_FRAMEWORK_WH`
+   - **Query Warehouse**: Select `cortex_ai_demo_wh`
+   - **Notebook Warehouse**: Select `cortex_ai_demo_wh`
 
 4. **Click `Create`** to import the notebook
 
