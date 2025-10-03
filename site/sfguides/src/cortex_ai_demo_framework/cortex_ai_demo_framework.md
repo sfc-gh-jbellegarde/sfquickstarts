@@ -79,7 +79,6 @@ Download these framework files from the GitHub repository:
 | [**03_ai_framework_sql_to_yaml_converter.py**](https://github.com/Snowflake-Labs/sfguide-getting-started-with-cortex-ai-demo-framework/blob/main/scripts/03_ai_framework_sql_to_yaml_converter.py) | SQL to YAML configuration converter (generates semantic models) |
 | [**04_ai_framework_snow_demo.py**](https://github.com/Snowflake-Labs/sfguide-getting-started-with-cortex-ai-demo-framework/blob/main/scripts/04_ai_framework_snow_demo.py) | Demo configuration and runner |
 | [**05_ai_framework_snow_viz.py**](https://github.com/Snowflake-Labs/sfguide-getting-started-with-cortex-ai-demo-framework/blob/main/scripts/05_ai_framework_snow_viz.py) | Advanced visualization components |
-| [**environment.yml**](https://github.com/Snowflake-Labs/sfguide-getting-started-with-cortex-ai-demo-framework/blob/main/scripts/environment.yml) | Conda environment for Streamlit dependencies |
 
 ### Step 3: Upload Framework Files to Stages
 
@@ -89,14 +88,12 @@ Download these framework files from the GitHub repository:
 
 **Upload framework applications to their respective stages:**
 
-3. For each stage, click `Enable Directory Table` and upload **both files**:
-   - `SYNTHETIC_DATA_GENERATOR_START_HERE`: Upload `01_ai_framework_synthetic_data_generator.py` + `environment.yml`
-   - `STRUCTURED_TABLES`: Upload `02_ai_framework_structured_tables.py` + `environment.yml`
-   - `SQL_TO_YAML_CONVERTER`: Upload `03_ai_framework_sql_to_yaml_converter.py` + `environment.yml`
-   - `SNOW_DEMO`: Upload `04_ai_framework_snow_demo.py` + `environment.yml`
-   - `SNOW_VIZ`: Upload `05_ai_framework_snow_viz.py` + `environment.yml`
-
-**⚠️ Important:** Each stage needs both the Python file AND `environment.yml` for dependencies.
+3. For each stage, click `Enable Directory Table` and upload the Python file:
+   - `SYNTHETIC_DATA_GENERATOR_START_HERE`: Upload `01_ai_framework_synthetic_data_generator.py`
+   - `STRUCTURED_TABLES`: Upload `02_ai_framework_structured_tables.py`
+   - `SQL_TO_YAML_CONVERTER`: Upload `03_ai_framework_sql_to_yaml_converter.py`
+   - `SNOW_DEMO`: Upload `04_ai_framework_snow_demo.py`
+   - `SNOW_VIZ`: Upload `05_ai_framework_snow_viz.py`
 
 ### Step 4: Import the Framework Setup Notebook
 
@@ -131,7 +128,7 @@ Duration: 8
 **What the notebook does:**
 - Creates sample customer survey data tables
 - Processes data with Cortex AI functions (SENTIMENT, EXTRACT_ANSWER, COMPLETE)
-- Deploys all 8 Streamlit applications from the uploaded stage files using environment.yml for dependencies
+- Deploys all 5 Streamlit applications from the uploaded stage files
 - Sets up the complete framework for immediate demo creation
 
 The notebook processes sample data and deploys the complete framework application suite.
