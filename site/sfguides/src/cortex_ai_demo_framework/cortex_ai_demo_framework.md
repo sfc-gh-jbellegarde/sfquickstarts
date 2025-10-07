@@ -83,15 +83,15 @@ The setup script creates:
 
 Download these framework files from the GitHub repository:
 
-| File | Purpose |
-|------|---------|
-| [**cortex_ai_demo_framework_setup.ipynb**](https://github.com/Snowflake-Labs/sfguide-getting-started-with-cortex-ai-demo-framework/blob/main/notebooks/cortex_ai_demo_framework_setup.ipynb) | Setup notebook for framework deployment |
-| [**01_ai_framework_synthetic_data_generator.py**](https://github.com/Snowflake-Labs/sfguide-getting-started-with-cortex-ai-demo-framework/blob/main/scripts/01_ai_framework_synthetic_data_generator.py) | AI-powered synthetic data creation |
-| [**02_ai_framework_structured_tables.py**](https://github.com/Snowflake-Labs/sfguide-getting-started-with-cortex-ai-demo-framework/blob/main/scripts/02_ai_framework_structured_tables.py) | Data structuring and transformation |
-| [**03_ai_framework_sql_to_yaml_converter.py**](https://github.com/Snowflake-Labs/sfguide-getting-started-with-cortex-ai-demo-framework/blob/main/scripts/03_ai_framework_sql_to_yaml_converter.py) | SQL to YAML configuration converter (generates semantic models) |
-| [**04_ai_framework_snow_demo.py**](https://github.com/Snowflake-Labs/sfguide-getting-started-with-cortex-ai-demo-framework/blob/main/scripts/04_ai_framework_snow_demo.py) | Demo configuration and runner |
-| [**05_ai_framework_snow_viz.py**](https://github.com/Snowflake-Labs/sfguide-getting-started-with-cortex-ai-demo-framework/blob/main/scripts/05_ai_framework_snow_viz.py) | Advanced visualization components |
-| [**environment.yml**](https://github.com/Snowflake-Labs/sfguide-getting-started-with-cortex-ai-demo-framework/blob/main/scripts/environment.yml) | Conda environment configuration for latest Streamlit |
+| File | Purpose | Download Link |
+|------|---------|---------------|
+| **Notebook** | Setup notebook for framework deployment | [cortex_ai_demo_framework_setup.ipynb](https://github.com/Snowflake-Labs/sfguide-getting-started-with-cortex-ai-demo-framework/blob/main/notebooks/cortex_ai_demo_framework_setup.ipynb) |
+| **Synthetic Data Generator** | AI-powered synthetic data creation | [01_ai_framework_synthetic_data_generator.py](https://github.com/Snowflake-Labs/sfguide-getting-started-with-cortex-ai-demo-framework/blob/main/scripts/01_ai_framework_synthetic_data_generator.py) |
+| **Structured Tables** | Data structuring and transformation | [02_ai_framework_structured_tables.py](https://github.com/Snowflake-Labs/sfguide-getting-started-with-cortex-ai-demo-framework/blob/main/scripts/02_ai_framework_structured_tables.py) |
+| **SQL to YAML Converter** | SQL to YAML configuration converter (generates semantic models) | [03_ai_framework_sql_to_yaml_converter.py](https://github.com/Snowflake-Labs/sfguide-getting-started-with-cortex-ai-demo-framework/blob/main/scripts/03_ai_framework_sql_to_yaml_converter.py) |
+| **Snow Demo** | Demo configuration and runner | [04_ai_framework_snow_demo.py](https://github.com/Snowflake-Labs/sfguide-getting-started-with-cortex-ai-demo-framework/blob/main/scripts/04_ai_framework_snow_demo.py) |
+| **Snow Viz** | Advanced visualization components | [05_ai_framework_snow_viz.py](https://github.com/Snowflake-Labs/sfguide-getting-started-with-cortex-ai-demo-framework/blob/main/scripts/05_ai_framework_snow_viz.py) |
+| **Environment File** | Conda environment configuration for latest Streamlit | [environment.yml](https://github.com/Snowflake-Labs/sfguide-getting-started-with-cortex-ai-demo-framework/blob/main/scripts/environment.yml) |
 
 ### Step 3: Upload Framework Files to Single Stage
 
@@ -111,19 +111,19 @@ Download these framework files from the GitHub repository:
 
 ### Step 4: Import the Framework Setup Notebook
 
-**Import into Snowflake**:
+1. **Import into Snowflake**:
    - Navigate to `Projects` → `Notebooks` in Snowsight
    - Click the down arrow next to `+ Notebook` and select `Import .ipynb file`
    - Choose `cortex_ai_demo_framework_setup.ipynb` from your downloads
 
-**Configure the notebook settings**:
+2. **Configure the notebook settings**:
    - **Role**: Select `cortex_ai_demo_data_scientist`
    - **Database**: Select `AI_FRAMEWORK_DB`
    - **Schema**: Select `BRONZE_LAYER`  
    - **Query Warehouse**: Select `cortex_ai_demo_wh`
    - **Notebook Warehouse**: Select `cortex_ai_demo_wh`
 
-**Click `Create`** to import the notebook
+3. **Click `Create`** to import the notebook
 
 The notebook creates all 5 Streamlit applications using the single stage approach with automatic environment.yml detection for the latest Streamlit version.
 
