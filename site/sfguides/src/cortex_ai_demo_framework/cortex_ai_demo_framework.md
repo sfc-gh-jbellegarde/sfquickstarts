@@ -85,13 +85,13 @@ Download these framework files from the GitHub repository:
 
 | File | Purpose | Download Link |
 |------|---------|---------------|
-| **Notebook** | Setup notebook for framework deployment | [cortex_ai_demo_framework_setup.ipynb](https://github.com/Snowflake-Labs/sfguide-getting-started-with-cortex-ai-demo-framework/blob/main/notebooks/cortex_ai_demo_framework_setup.ipynb) |
 | **Synthetic Data Generator** | AI-powered synthetic data creation | [01_ai_framework_synthetic_data_generator.py](https://github.com/Snowflake-Labs/sfguide-getting-started-with-cortex-ai-demo-framework/blob/main/scripts/01_ai_framework_synthetic_data_generator.py) |
 | **Structured Tables** | Data structuring and transformation | [02_ai_framework_structured_tables.py](https://github.com/Snowflake-Labs/sfguide-getting-started-with-cortex-ai-demo-framework/blob/main/scripts/02_ai_framework_structured_tables.py) |
 | **SQL to YAML Converter** | SQL to YAML configuration converter (generates semantic models) | [03_ai_framework_sql_to_yaml_converter.py](https://github.com/Snowflake-Labs/sfguide-getting-started-with-cortex-ai-demo-framework/blob/main/scripts/03_ai_framework_sql_to_yaml_converter.py) |
 | **Snow Demo** | Demo configuration and runner | [04_ai_framework_snow_demo.py](https://github.com/Snowflake-Labs/sfguide-getting-started-with-cortex-ai-demo-framework/blob/main/scripts/04_ai_framework_snow_demo.py) |
 | **Snow Viz** | Advanced visualization components | [05_ai_framework_snow_viz.py](https://github.com/Snowflake-Labs/sfguide-getting-started-with-cortex-ai-demo-framework/blob/main/scripts/05_ai_framework_snow_viz.py) |
 | **Environment File** | Conda environment configuration for latest Streamlit | [environment.yml](https://github.com/Snowflake-Labs/sfguide-getting-started-with-cortex-ai-demo-framework/blob/main/scripts/environment.yml) |
+| **Notebook** | Setup notebook for framework deployment | [cortex_ai_demo_framework_setup.ipynb](https://github.com/Snowflake-Labs/sfguide-getting-started-with-cortex-ai-demo-framework/blob/main/notebooks/cortex_ai_demo_framework_setup.ipynb) |
 
 ### Step 3: Upload Framework Files to Single Stage
 
@@ -147,178 +147,74 @@ The notebook processes sample data and deploys the complete framework applicatio
 
 <!-- ------------------------ -->
 ## Explore Framework Applications
-Duration: 15
+Duration: 10
 
-### Access Your Framework Applications
+### Access Your Demo Framework
 
 1. Navigate to `Projects` → `Streamlit` in Snowsight
-2. You'll see multiple applications deployed from the framework:
+2. You'll see 5 framework applications deployed:
 
-#### **Cortex Framework Demo**
-- **Purpose**: Framework overview and pipeline explanation
-- **Features**: Interactive framework tour, component explanations, use case examples
-- **Best for**: Understanding the framework capabilities and architecture
+### Core Applications
 
-#### **Cortex Framework Visualizer** 
-- **Purpose**: Interactive analytics dashboard
-- **Features**: Data visualization, filtering, export capabilities, AI insights
-- **Best for**: Exploring data patterns and creating customer-facing demos
+#### **Synthetic Data Generator** (Start Here 🚀)
+**Purpose**: Create realistic AI-powered datasets for any industry
+**How to use**: 
+- Select industry template (retail, healthcare, finance, etc.)
+- Define data parameters (rows, columns, relationships)
+- Generate synthetic data with AI-powered realistic values
+- Export to Snowflake tables for immediate use
 
-#### **Synthetic Data Generator**
-- **Purpose**: AI-powered realistic data creation
-- **Features**: Custom prompts, multiple data types, configuration management
-- **Best for**: Creating realistic demo datasets for any use case
+#### **Structured Tables** 
+**Purpose**: Design optimal data schemas and relationships
+**How to use**:
+- Import existing table structures or create new ones
+- Define relationships between tables (foreign keys, joins)
+- Optimize schema design for analytics performance
+- Generate DDL scripts for table creation
 
-#### **Data Provider**
-- **Purpose**: Data ingestion and management
-- **Features**: File upload, data transformation, integration setup
-- **Best for**: Connecting external data sources to the framework
-
-#### **Structured Tables**
-- **Purpose**: Table structure and schema management  
-- **Features**: Schema design, relationship mapping, data modeling
-- **Best for**: Designing optimal data structures for demos
-
-#### **YAML Wizard**
-- **Purpose**: SQL to YAML configuration converter
-- **Features**: Automated conversion, configuration templates, validation
-- **Best for**: Creating semantic model configurations quickly
-
-#### **Semantic Model Creator**
-- **Purpose**: Automated semantic model generation
-- **Features**: AI-enhanced models, table analysis, YAML generation
-- **Best for**: Building Cortex Analyst-ready semantic models
+#### **SQL to YAML Converter**
+**Purpose**: Generate semantic models for Cortex Analyst integration
+**How to use**:
+- Input SQL queries or table structures
+- Automatically convert to YAML semantic model format
+- Configure dimensions, measures, and relationships
+- Deploy semantic models for natural language querying
 
 #### **Snow Demo**
-- **Purpose**: Demo configuration and execution
-- **Features**: Demo orchestration, configuration management, execution workflows
-- **Best for**: Running complete demo scenarios
+**Purpose**: Configure and orchestrate complete demo scenarios
+**How to use**:
+- Combine data, visualizations, and AI insights into demo flows
+- Set up presentation sequences and talking points
+- Configure demo parameters and customizations
+- Execute end-to-end demo scenarios
 
 #### **Snow Viz**
-- **Purpose**: Advanced visualization components
-- **Features**: Multiple chart types, interactive dashboards, custom visualizations
-- **Best for**: Creating sophisticated analytical interfaces
+**Purpose**: Build advanced interactive visualizations and dashboards
+**How to use**:
+- Connect to any Snowflake data source
+- Create charts, graphs, and interactive dashboards
+- Apply filters, drill-downs, and dynamic parameters
+- Export visualizations for presentations
 
-### Framework Workflow
+### Demo Creation Workflow
 
-**Typical demo creation workflow:**
-1. **Generate Data** - Use Synthetic Data Generator for realistic datasets
-2. **Design Schema** - Use Structured Tables for optimal data organization  
-3. **Create Models** - Use Semantic Model Creator for Cortex Analyst integration
-4. **Build Visualizations** - Use Snow Viz for interactive dashboards
-5. **Configure Demo** - Use Snow Demo for complete demo orchestration
-6. **Present** - Use any application for customer-facing demonstrations
+**Create a complete demo in ~5 minutes:**
 
-<!-- ------------------------ -->
-## Build Your First Demo
-Duration: 10
+**Step 1: Data Creation** (Required)
+→ Use **Synthetic Data Generator** to create realistic datasets
 
-### Quick Demo Creation Exercise
+**Optional Enhancements:**
+- **Schema Design** → Use **Structured Tables** to optimize data organization
+- **AI Integration** → Use **SQL to YAML Converter** for Cortex Analyst capabilities
+- **Visualization** → Use **Snow Viz** to build interactive dashboards
+- **Demo Orchestration** → Use **Snow Demo** to configure presentation flow
 
-Let's create a simple customer analytics demo using the framework:
+### Framework Capabilities
 
-#### **Step 1: Generate Sample Data**
-1. Open the **Synthetic Data Generator** application
-2. Use the customer survey template
-3. Generate 50-100 sample customer records
-4. Save the configuration for reuse
-
-#### **Step 2: Create Visualizations**
-1. Open the **Cortex Framework Visualizer** application  
-2. Explore the sample data with different filters
-3. Create charts for satisfaction trends and regional analysis
-4. Export insights for presentation
-
-#### **Step 3: Set Up AI Analysis**
-1. The framework automatically processes data with Cortex AI functions
-2. View sentiment analysis results in the visualizer
-3. Review AI-generated business recommendations
-4. Test the natural language query capabilities
-
-#### **Step 4: Configure Demo Flow**
-1. Open the **Snow Demo** application
-2. Create a demo configuration combining your data and visualizations
-3. Set up the demo sequence and key talking points
-4. Save the configuration for repeated use
-
-### Demo Ready!
-Your demo is now ready for presentation. The entire process from idea to demo took approximately 5 minutes, demonstrating the power of the framework approach.
-
-<!-- ------------------------ -->
-## Advanced Framework Usage
-Duration: 10
-
-### Creating Custom Use Cases
-
-The framework is designed to support any industry or use case. Here are examples:
-
-#### **Retail Analytics Demo**
-- **Data**: Customer transactions, product catalog, reviews
-- **Processing**: Sentiment analysis on reviews, recommendation engine
-- **Visualization**: Sales dashboards, customer journey analysis
-- **Time**: ~5 minutes
-
-#### **Financial Services Demo**  
-- **Data**: Transaction data, customer profiles, risk indicators
-- **Processing**: Fraud detection patterns, customer segmentation
-- **Visualization**: Risk dashboards, compliance reporting
-- **Time**: ~5 minutes
-
-#### **Healthcare Analytics Demo**
-- **Data**: Patient records, treatment outcomes, satisfaction surveys
-- **Processing**: Outcome prediction, satisfaction analysis
-- **Visualization**: Patient journey, outcome tracking
-- **Time**: ~5 minutes
-
-### Framework Extensions
-
-**Add Custom Components:**
-1. Create new Streamlit applications following the framework pattern
-2. Upload to the `FRAMEWORK_DATA_STAGE`
-3. Deploy using the notebook deployment cells
-4. Integrate with existing framework workflows
-
-**Custom Data Sources:**
-1. Use the Data Provider application to connect external sources
-2. Configure data transformation and validation rules
-3. Integrate with the synthetic data generator for augmentation
-4. Set up automated data refresh workflows
-
-<!-- ------------------------ -->
-## Framework Architecture
-Duration: 5
-
-### Technical Architecture
-
-The Cortex AI Demo Framework follows a layered architecture:
-
-#### **Data Layers**
-- **Bronze Layer**: Raw data ingestion and synthetic data generation
-- **Silver Layer**: Processed data with AI enhancements and analytics
-- **Apps Layer**: Deployed Streamlit applications and configurations
-- **Configs Layer**: YAML files, semantic models, and configuration data
-
-#### **Application Components**
-- **Core Framework**: Demo, Visualizer, and pipeline explanation apps
-- **Data Tools**: Synthetic generator, data provider, structured tables
-- **AI Tools**: YAML wizard, semantic model creator
-- **Presentation Tools**: Snow demo, snow viz, advanced visualizations
-
-#### **Integration Points**
-- **Cortex AI**: Full integration with SENTIMENT, EXTRACT_ANSWER, COMPLETE
-- **Cortex Search**: Semantic search across any dataset
-- **Cortex Analyst**: Natural language query interface with YAML models
-- **Snowpark**: Session management and data processing
-- **Streamlit**: Native Snowflake app deployment and management
-
-### Performance Optimization
-
-**Framework Performance:**
-- **Setup Time**: ~5 minutes from setup.sql to deployed applications
-- **Demo Creation**: ~5 minutes from idea to presentable demo
-- **Data Generation**: Real-time synthetic data creation with AI
-- **Visualization**: Interactive dashboards with sub-second response times
-- **Scalability**: Handles datasets from hundreds to millions of records
+- **Industry Templates**: Retail, Financial Services, Healthcare, Manufacturing, Telecommunications
+- **AI Features**: Sentiment analysis, text generation, semantic search, natural language queries
+- **Visualization Types**: Charts, dashboards, interactive filters, drill-down capabilities
+- **Performance**: Real-time data generation, sub-second dashboard response, scalable architecture
 
 <!-- ------------------------ -->
 ## Clean Up Resources
