@@ -18,7 +18,7 @@ Demo development is crucial for businesses to showcase their AI capabilities and
 In this Quickstart, we will build a comprehensive demo development platform called "Cortex AI Demo Framework". This demonstrates how to use Snowflake Cortex AI functions to create synthetic data, build interactive analytics, deploy search capabilities, and generate complete demonstration environments.
 
 This Quickstart showcases the complete Cortex AI Demo Framework with:
-- **5-application integrated demo platform** with Synthetic Data Generator, Structured Tables, SQL to YAML Converter, Snow Demo, and Snow Viz
+- **6-application integrated demo platform** with Synthetic Data Generator, Structured Tables, SQL to YAML Converter, Snow Demo, YAML Wizard, and Snow Viz
 - **AI-powered data generation** using all Cortex functions
 - **Advanced semantic search** and automated model creation
 - **Cortex Search Service** for intelligent data discovery
@@ -27,10 +27,12 @@ This Quickstart showcases the complete Cortex AI Demo Framework with:
 
 
 ### What You Will Build
-- Complete 5-application integrated demo platform
+- Complete 6-application integrated demo platform
 - AI-powered synthetic data generation system using Cortex functions
 - Advanced semantic modeling and search capabilities
 - Professional demo orchestration and configuration tools
+- Interactive dashboard creation wizard with database introspection
+- Advanced dashboard renderer with multiple visualization types
 - Interactive Cortex Search Service for semantic discovery
 - Production-ready Streamlit applications with advanced visualizations
 - Reusable framework for rapid demo creation across any industry
@@ -85,13 +87,14 @@ Download these framework files from the GitHub repository:
 
 | File | Purpose | Download Link |
 |------|---------|---------------|
+| **Notebook** | Setup notebook for framework deployment | [cortex_ai_demo_framework_setup.ipynb](https://github.com/Snowflake-Labs/sfguide-getting-started-with-cortex-ai-demo-framework/blob/main/notebooks/cortex_ai_demo_framework_setup.ipynb) |
+| **Environment File** | Conda environment configuration for latest Streamlit | [environment.yml](https://github.com/Snowflake-Labs/sfguide-getting-started-with-cortex-ai-demo-framework/blob/main/scripts/environment.yml) |
 | **Synthetic Data Generator** | AI-powered synthetic data creation | [01_ai_framework_synthetic_data_generator.py](https://github.com/Snowflake-Labs/sfguide-getting-started-with-cortex-ai-demo-framework/blob/main/scripts/01_ai_framework_synthetic_data_generator.py) |
 | **Structured Tables** | Data structuring and transformation | [02_ai_framework_structured_tables.py](https://github.com/Snowflake-Labs/sfguide-getting-started-with-cortex-ai-demo-framework/blob/main/scripts/02_ai_framework_structured_tables.py) |
 | **SQL to YAML Converter** | SQL to YAML configuration converter (generates semantic models) | [03_ai_framework_sql_to_yaml_converter.py](https://github.com/Snowflake-Labs/sfguide-getting-started-with-cortex-ai-demo-framework/blob/main/scripts/03_ai_framework_sql_to_yaml_converter.py) |
 | **Snow Demo** | Demo configuration and runner | [04_ai_framework_snow_demo.py](https://github.com/Snowflake-Labs/sfguide-getting-started-with-cortex-ai-demo-framework/blob/main/scripts/04_ai_framework_snow_demo.py) |
-| **Snow Viz** | Advanced visualization components | [05_ai_framework_snow_viz.py](https://github.com/Snowflake-Labs/sfguide-getting-started-with-cortex-ai-demo-framework/blob/main/scripts/05_ai_framework_snow_viz.py) |
-| **Environment File** | Conda environment configuration for latest Streamlit | [environment.yml](https://github.com/Snowflake-Labs/sfguide-getting-started-with-cortex-ai-demo-framework/blob/main/scripts/environment.yml) |
-| **Notebook** | Setup notebook for framework deployment | [cortex_ai_demo_framework_setup.ipynb](https://github.com/Snowflake-Labs/sfguide-getting-started-with-cortex-ai-demo-framework/blob/main/notebooks/cortex_ai_demo_framework_setup.ipynb) |
+| **YAML Wizard** | Interactive dashboard configuration creator | [05_ai_framework_snow_viz_yaml_wizard.py](https://github.com/Snowflake-Labs/sfguide-getting-started-with-cortex-ai-demo-framework/blob/main/scripts/05_ai_framework_snow_viz_yaml_wizard.py) |
+| **Snow Viz** | Advanced visualization dashboard renderer | [06_ai_framework_snow_viz.py](https://github.com/Snowflake-Labs/sfguide-getting-started-with-cortex-ai-demo-framework/blob/main/scripts/06_ai_framework_snow_viz.py) |
 
 ### Step 3: Upload Framework Files to Single Stage
 
@@ -101,12 +104,13 @@ Download these framework files from the GitHub repository:
 
 **Upload all framework files to the single `AI_FRAMEWORK_APPS` stage:**
 
-3. Click on `AI_FRAMEWORK_APPS` stage, then click `Enable Directory Table` and upload all 6 files:
+3. Click on `AI_FRAMEWORK_APPS` stage, then click `Enable Directory Table` and upload all 7 files:
    - `01_ai_framework_synthetic_data_generator.py`
    - `02_ai_framework_structured_tables.py`
    - `03_ai_framework_sql_to_yaml_converter.py`
    - `04_ai_framework_snow_demo.py`
-   - `05_ai_framework_snow_viz.py`
+   - `05_ai_framework_snow_viz_yaml_wizard.py`
+   - `06_ai_framework_snow_viz.py`
    - `environment.yml`
 
 ### Step 4: Import the Framework Setup Notebook
@@ -125,7 +129,7 @@ Download these framework files from the GitHub repository:
 
 3. **Click `Create`** to import the notebook
 
-The notebook creates all 5 Streamlit applications using the single stage approach with automatic environment.yml detection for the latest Streamlit version.
+The notebook creates all 6 Streamlit applications using the single stage approach with automatic environment.yml detection for the latest Streamlit version.
 
 <!-- ------------------------ -->
 ## Run Framework Demo Notebook
@@ -140,7 +144,7 @@ Duration: 8
 **What the notebook does:**
 - Creates sample customer survey data tables
 - Processes data with Cortex AI functions (SENTIMENT, EXTRACT_ANSWER, COMPLETE)
-- Deploys all 5 Streamlit applications from the uploaded stage files
+- Deploys all 6 Streamlit applications from the uploaded stage files
 - Sets up the complete framework for immediate demo creation
 
 The notebook processes sample data and deploys the complete framework application suite.
@@ -152,7 +156,7 @@ Duration: 10
 ### Access Your Demo Framework
 
 1. Navigate to `Projects` → `Streamlit` in Snowsight
-2. You'll see 5 framework applications deployed:
+2. You'll see 6 framework applications deployed:
 
 ### Core Applications
 
@@ -188,13 +192,23 @@ Duration: 10
 - Configure demo parameters and customizations
 - Execute end-to-end demo scenarios
 
-#### **Snow Viz**
-**Purpose**: Build advanced interactive visualizations and dashboards
+#### **YAML Wizard**
+**Purpose**: Interactive dashboard configuration creator with database introspection
 **How to use**:
-- Connect to any Snowflake data source
-- Create charts, graphs, and interactive dashboards
-- Apply filters, drill-downs, and dynamic parameters
-- Export visualizations for presentations
+- Connect to any Snowflake database and analyze table structures
+- Auto-detect dimensions, metrics, and data relationships
+- Customize dashboard configurations through guided interface
+- Generate YAML files for advanced dashboard creation
+- Create Intelligence Agents for natural language data interaction
+
+#### **Snow Viz**
+**Purpose**: Advanced dashboard renderer that uses YAML configurations
+**How to use**:
+- Load YAML configurations created by YAML Wizard or manually
+- Render interactive dashboards with multiple visualization types
+- Support for Overview, Product, Compare, TopN, Search, and Analyst tabs
+- Integrate Cortex Search and Cortex Analyst capabilities
+- Export and share professional dashboard presentations
 
 ### Demo Creation Workflow
 
@@ -206,7 +220,8 @@ Duration: 10
 **Optional Enhancements:**
 - **Schema Design** → Use **Structured Tables** to optimize data organization
 - **AI Integration** → Use **SQL to YAML Converter** for Cortex Analyst capabilities
-- **Visualization** → Use **Snow Viz** to build interactive dashboards
+- **Dashboard Configuration** → Use **YAML Wizard** to create interactive dashboard configs
+- **Visualization** → Use **Snow Viz** to render dashboards from YAML configurations
 - **Demo Orchestration** → Use **Snow Demo** to configure presentation flow
 
 ### Framework Capabilities
