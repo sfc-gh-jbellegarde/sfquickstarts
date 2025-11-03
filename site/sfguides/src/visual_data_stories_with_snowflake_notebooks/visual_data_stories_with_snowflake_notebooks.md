@@ -1,17 +1,16 @@
 id: visual_data_stories_with_snowflake_notebooks
+categories: snowflake-site:taxonomy/solution-center/certification/quickstart, snowflake-site:taxonomy/solution-center/certification/certified-solution, snowflake-site:taxonomy/solution-center/includes/architecture, snowflake-site:taxonomy/product/platform, snowflake-site:taxonomy/snowflake-feature/observability, snowflake-site:taxonomy/snowflake-feature/build
+language: en
 summary: This guide provides the instructions on how to build visualizations in Snowflake Notebook.
-categories: featured,getting-started
 environments: web
 status: Published
 feedback link: <https://github.com/Snowflake-Labs/sfguides/issues>
-tags: Getting Started, Snowflake Notebooks
 authors: Vino Duraisamy, Doris Lee
 
 # A Guide to Visual Data Storytelling in Snowflake Notebooks
 <!-- ------------------------ -->
 ## Overview
 
-Duration: 5
 
 [Snowflake Notebooks](https://docs.snowflake.com/user-guide/ui-snowsight/notebooks) offer an interactive, cell-based programming environment for Python and SQL. With a Snowflake Notebook, you can perform exploratory data analysis, visualize your data, build data dashboards, experiment with feature engineering for machine learning, and perform other data science tasks within Snowflake.
 
@@ -47,7 +46,6 @@ Here is a summary of what you will be able to learn in each step by following th
 <!-- ------------------------ -->
 ## Load demo notebooks to Snowflake
 
-Duration: 5
 
 You can create a Snowflake Notebook directly from the Snowsight UI or upload an existing IPython Notebook to Snowflake.
 
@@ -72,7 +70,6 @@ The notebook files are available for download as `.ipynb` files in the demo repo
 <!-- ------------------------ -->
 ## Plotting data using Altair, Matplotlib and Plotly
 
-Duration: 5
 
 With Snowflake Notebook, you can use your favorite Python visualization library, including Altair, matplotlib and plotly, to develop your visualization. 
 
@@ -151,7 +148,6 @@ px.bar(df, x='measurement', y='value', color='species')
 <!-- ------------------------ -->
 ## Working with Markdown cells
 
-Duration: 5
 
 With Snowflake Notebooks, you can leverage Markdown language to develop rich text displays with formatting.
 
@@ -206,13 +202,12 @@ You can use the Markdown Syntax to embed images and GIFs in your notebook.
 
 The syntax looks like `![text](hyperlink)`. Here are some examples!
 
-`![](https://www.snowflake.com/wp-content/themes/snowflake/assets/img/brand-guidelines/logo-sno-blue-example.svg)`
+`![](/wp-content/themes/snowflake/assets/img/brand-guidelines/logo-sno-blue-example.svg)`
 `![](https://upload.wikimedia.org/wikipedia/commons/2/2c/Rotating_earth_%28large%29.gif)`
 
 <!-- ------------------------ -->
 ## Using Streamlit in Notebook
 
-Duration: 5
 
 You can bring your data narrative alive in notebooks and make it even more interactive by using Streamlit.
 
@@ -224,7 +219,7 @@ We saw how you can embed images using Markdown. Here we show how you can embed i
 
 ```python
 import streamlit as st
-st.image("https://www.snowflake.com/wp-content/themes/snowflake/assets/img/brand-guidelines/logo-sno-blue-example.svg",width=500)
+st.image("/wp-content/themes/snowflake/assets/img/brand-guidelines/logo-sno-blue-example.svg",width=500)
 ```
 
 ```python
@@ -247,7 +242,6 @@ st.image(image)
 <!-- ------------------------ -->
 ## Build Interactive Data Apps with Streamlit
 
-Duration: 5
 
 Think of each cell in your Snowflake Notebook as a mini Streamlit app. As you interact with your data app, the relevant cells will get re-executed and the results in your app updates.
 
@@ -277,7 +271,6 @@ alt.Chart(df).mark_bar().encode(
 <!-- ------------------------ -->
 ## Conclusion And Resources
 
-Duration: 1
 
 Congratulations! You've successfully completed the Visual Data Stories with Snowflake Notebooks quickstart guide. [Try out Notebooks](https://signup.snowflake.com/?utm_cta=quickstarts_) yourself to build your own data narrative!
 
@@ -293,6 +286,8 @@ Congratulations! You've successfully completed the Visual Data Stories with Snow
 Here are some resources to learn more about Snowflake Notebooks:
 
 * [Documentation](https://docs.snowflake.com/LIMITEDACCESS/snowsight-notebooks/ui-snowsight-notebooks-about)
-* [Github Demo Repo](https://github.com/Snowflake-Labs/snowflake-demo-notebooks/tree/main)
+* [Github Demo Repo]([https://github.com/Snowflake-Labs/snowflake-demo-notebooks/tree/main](https://github.com/Snowflake-Labs/snowflake-demo-notebooks/tree/main/Visual%20Data%20Stories%20with%20Snowflake%20Notebooks?_fsi=JPxvZrjh))
+* [View the Notebook](/notebooks/?staticAppId=Visual_Data_Stories_with_Snowflake_Notebooks)
 * [YouTube Playlist](https://www.youtube.com/playlist?list=PLavJpcg8cl1Efw8x_fBKmfA2AMwjUaeBI)
 * [Solution Center](https://developers.snowflake.com/solutions/?_sft_technology=notebooks)
+* [Download Reference Architecture](/content/dam/snowflake-site/developers/2024/07/Visual-Data-Stories-with-Snowflake-Notebooks.pdf)
