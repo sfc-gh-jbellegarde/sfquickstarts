@@ -1,17 +1,16 @@
-id: getting_started_with_Openflow_spcs
+id: getting-started-with-openflow-spcs
+categories: snowflake-site:taxonomy/solution-center/certification/quickstart, snowflake-site:taxonomy/product/platform, snowflake-site:taxonomy/snowflake-feature/ingestion, snowflake-site:taxonomy/snowflake-feature/transformation, snowflake-site:taxonomy/snowflake-feature/snowpark-container-services
+language: en
 summary: Getting Started with Snowflake Openflow using Snowpark Container Services (SPCS)
-categories: featured,getting-started,data-engineering,data-integration,Openflow,spcs
 environments: web
 status: Published
 feedback link: <https://github.com/Snowflake-Labs/sfguide-getting-started-with-openflow-spcs/issues>
-tags: Getting Started, Openflow, SPCS, Snowpark Container Services, Data Integration, Connectors
 authors: Kamesh Sampath<kamesh.sampath@snowflake.com>, Dan Chaffelson<dan.chaffelson@snowflake.com>
 
 # Getting Started with Snowflake Openflow SPCS
 <!-- ------------------------ -->
 ## Overview
 
-Duration: 5
 
 Learn how to set up Snowflake Openflow using Snowpark Container Services (SPCS) in about 25 minutes. You'll create the foundation needed to start ingesting data from external sources using pre-built connectors.
 
@@ -105,7 +104,6 @@ Once you complete this 25-minute setup, you'll have a production-ready Openflow 
 <!-- ------------------------ -->
 ## Setup Core Snowflake
 
-Duration: 10
 
 Before creating a deployment, you need to configure core Snowflake components including the Openflow admin role, required privileges, and network configuration.
 
@@ -218,9 +216,6 @@ SHOW ROLES LIKE 'OPENFLOW_ADMIN';
 
 -- Verify grants
 SHOW GRANTS TO ROLE OPENFLOW_ADMIN;
-
--- Verify network rule
-DESC NETWORK RULE snowflake_deployment_network_rule;
 ```
 
 > aside positive
@@ -231,7 +226,6 @@ DESC NETWORK RULE snowflake_deployment_network_rule;
 <!-- ------------------------ -->
 ## Create Deployment
 
-Duration: 5
 
 After configuring core Snowflake, create an Openflow deployment. This is the container environment where Openflow will run.
 
@@ -280,7 +274,6 @@ Expected status: **ACTIVE**
 <!-- ------------------------ -->
 ## Create Runtime Role
 
-Duration: 5
 
 Create a runtime role that will be used by your Openflow runtime. This role needs access to databases, schemas, and warehouses for data ingestion.
 
@@ -390,7 +383,6 @@ DESC INTEGRATION quickstart_access;
 <!-- ------------------------ -->
 ## Create Runtime
 
-Duration: 5
 
 Create a runtime associated with the previously created runtime role. A runtime is the execution environment for your Openflow connectors.
 
@@ -441,7 +433,6 @@ Once your runtime is active, you can access the Openflow canvas to add and confi
 <!-- ------------------------ -->
 ## Next Steps
 
-Duration: 2
 
 With your Openflow SPCS infrastructure set up, you're ready to configure connectors to ingest data from external sources.
 
@@ -487,12 +478,11 @@ Try these common use cases:
 - **Multi-source Integration** - Combine data from multiple connectors
 
 > aside positive
-> **RECOMMENDED:** Start with the [Google Drive Document Intelligence quickstart](https://quickstarts.snowflake.com/guide/getting_started_with_Openflow_unstructured_data_pipeline/index.html) for a complete end-to-end example using Openflow SPCS.
+> **RECOMMENDED:** Start with the [Google Drive Document Intelligence quickstart](/en/developers/guides/getting-started-with-openflow-unstructured-data-pipeline/) for a complete end-to-end example using Openflow SPCS.
 
 <!-- ------------------------ -->
 ## Troubleshooting
 
-Duration: 5
 
 ### Deployment Not Starting
 
@@ -515,13 +505,6 @@ Duration: 5
    WHERE RECORD:severity = 'ERROR'
    ORDER BY TIMESTAMP DESC
    LIMIT 100;
-   ```
-
-3. **Check Network Rule**:
-
-   ```sql
-   -- Verify network rule exists
-   DESC NETWORK RULE snowflake_deployment_network_rule;
    ```
 
 ### Runtime Cannot Access External Services
@@ -602,7 +585,6 @@ If you continue experiencing issues:
 <!-- ------------------------ -->
 ## Cleanup
 
-Duration: 2
 
 When you're finished with the quickstart or want to remove resources, use Snowsight UI to clean up.
 
@@ -658,7 +640,6 @@ DROP ROLE IF EXISTS QUICKSTART_ROLE;
 <!-- ------------------------ -->
 ## Conclusion And Resources
 
-Duration: 2
 
 Congratulations! You've successfully set up Snowflake Openflow using Snowpark Container Services (SPCS). You now have a fully functional data integration platform ready to connect to external data sources.
 
