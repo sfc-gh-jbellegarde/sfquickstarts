@@ -1,4 +1,4 @@
-author: Joviane Bellegarde
+author: Lee Gould, Joviane Bellegarde
 id: snow-bear-leveraging-cortex-for-advanced-analytics
 categories: snowflake-site:taxonomy/solution-center/certification/quickstart, snowflake-site:taxonomy/solution-center/certification/certified-solution, snowflake-site:taxonomy/solution-center/includes/architecture, snowflake-site:taxonomy/product/analytics
 language: en
