@@ -1,4 +1,4 @@
-author: Joviane Bellegarde
+author: Lee Gould, Joviane Bellegarde
 id: cortex-ai-demo-framework
 summary: Cortex AI Demo Framework - Build sophisticated Cortex-powered demos in ~5 minutes
 categories: snowflake-site:taxonomy/solution-center/certification/quickstart, snowflake-site:taxonomy/snowflake-feature/cortex-llm-functions, 
