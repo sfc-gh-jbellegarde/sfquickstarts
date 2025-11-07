@@ -1,4 +1,4 @@
-author: Joviane Bellegarde
+author: Lee Gould, Joviane Bellegarde
 id: fan-engagement
 language: en
 summary: USOPC Fan Engagement - Exploring Fan Engagement Data with Snowflake Intelligence
