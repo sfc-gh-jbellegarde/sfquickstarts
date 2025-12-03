@@ -4,7 +4,7 @@ language: en
 summary: GameVerse Gaming Platform Analytics - Exploring Player Engagement Data with Snowflake Intelligence
 categories: snowflake-site:taxonomy/solution-center/certification/quickstart, snowflake-site:taxonomy/product/ai, snowflake-site:taxonomy/snowflake-feature/cortex-llm-functions, snowflake-site:taxonomy/snowflake-feature/build
 environments: web
-status: Hidden
+status: Published
 feedback link: https://github.com/Snowflake-Labs/sfguides/issues
 tags: Getting Started, Cortex, AI, Intelligence Agents, Streamlit, Gaming Analytics, Player Engagement
 
@@ -54,7 +54,7 @@ In this step, you'll create the Snowflake database objects and upload all necess
 
 1. In Snowsight, navigate to **Projects** > **Worksheets**
 2. Create a new SQL worksheet
-3. Copy the setup script from [gaming_setup.sql](https://github.com/Snowflake-Labs/sfguides-exploring-gaming-platform-analytics-with-snowflake-intelligence/blob/main/scripts/gaming_setup.sql) and paste it into your worksheet
+3. Copy the setup script from [setup.sql](https://github.com/Snowflake-Labs/sfguides-exploring-fan-engagement-data-with-snowflake-intelligence/blob/main/scripts/setup.sql) and paste it into your worksheet
 4. Run the script
 
 The setup script creates:
@@ -73,12 +73,12 @@ Download these files from the GitHub repository:
 
 | File | Purpose | Download Link |
 |------|---------|---------------|
-| **Setup Script** | SQL setup script for infrastructure | [gaming_setup.sql](https://github.com/Snowflake-Labs/sfguides-exploring-gaming-platform-analytics-with-snowflake-intelligence/blob/main/scripts/gaming_setup.sql) |
-| **Data File** | GameVerse player profiles (300k records) | [player_profile.csv.gz](https://github.com/Snowflake-Labs/sfguides-exploring-gaming-platform-analytics-with-snowflake-intelligence/blob/main/scripts/player_profile.csv.gz) |
-| **Streamlit App** | Interactive analytics dashboard | [gaming_dashboard.py](https://github.com/Snowflake-Labs/sfguides-exploring-gaming-platform-analytics-with-snowflake-intelligence/blob/main/scripts/gaming_dashboard.py) |
-| **Environment File** | Streamlit dependencies | [environment.yml](https://github.com/Snowflake-Labs/sfguides-exploring-gaming-platform-analytics-with-snowflake-intelligence/blob/main/scripts/environment.yml) |
-| **Semantic Model** | Cortex Analyst semantic model | [PLAYER_ENGAGEMENT_ANALYTICS.yaml](https://github.com/Snowflake-Labs/sfguides-exploring-gaming-platform-analytics-with-snowflake-intelligence/blob/main/scripts/PLAYER_ENGAGEMENT_ANALYTICS.yaml) |
-| **Notebook** | Complete setup notebook | [gaming_analytics_setup.ipynb](https://github.com/Snowflake-Labs/sfguides-exploring-gaming-platform-analytics-with-snowflake-intelligence/blob/main/notebooks/gaming_analytics_setup.ipynb) |
+| **Setup Script** | SQL setup script for infrastructure | [setup.sql](https://github.com/Snowflake-Labs/sfguides-exploring-fan-engagement-data-with-snowflake-intelligence/blob/main/scripts/setup.sql) |
+| **Data File** | GameVerse player profiles (300k records) | [player_profile.csv.gz](https://github.com/Snowflake-Labs/sfguides-exploring-fan-engagement-data-with-snowflake-intelligence/blob/main/scripts/player_profile.csv.gz) |
+| **Streamlit App** | Interactive analytics dashboard | [gaming_dashboard.py](https://github.com/Snowflake-Labs/sfguides-exploring-fan-engagement-data-with-snowflake-intelligence/blob/main/scripts/gaming_dashboard.py) |
+| **Environment File** | Streamlit dependencies | [environment.yml](https://github.com/Snowflake-Labs/sfguides-exploring-fan-engagement-data-with-snowflake-intelligence/blob/main/scripts/environment.yml) |
+| **Semantic Model** | Cortex Analyst semantic model | [PLAYER_ENGAGEMENT_ANALYTICS.yaml](https://github.com/Snowflake-Labs/sfguides-exploring-fan-engagement-data-with-snowflake-intelligence/blob/main/scripts/PLAYER_ENGAGEMENT_ANALYTICS.yaml) |
+| **Notebook** | Complete setup notebook | [gaming_analytics_setup.ipynb](https://github.com/Snowflake-Labs/sfguides-exploring-fan-engagement-data-with-snowflake-intelligence/blob/main/notebooks/gaming_analytics_setup.ipynb) |
 
 ### Step 3: Upload Files to Stages
 
@@ -300,4 +300,4 @@ Congratulations! You've successfully built the complete GameVerse Gaming Platfor
 - [Cortex Analyst](https://docs.snowflake.com/en/user-guide/snowflake-cortex/cortex-analyst)
 - [Intelligence Agents](https://docs.snowflake.com/en/user-guide/snowflake-intelligence)
 - [Streamlit in Snowflake](https://docs.snowflake.com/developer-guide/streamlit/about-streamlit)
-- [Fork Notebook on GitHub](https://github.com/Snowflake-Labs/sfguides-exploring-gaming-platform-analytics-with-snowflake-intelligence/blob/main/notebooks/gaming_analytics_setup.ipynb)
+- [Fork Notebook on GitHub](https://github.com/Snowflake-Labs/sfguides-exploring-fan-engagement-data-with-snowflake-intelligence/blob/main/notebooks/gaming_analytics_setup.ipynb)
