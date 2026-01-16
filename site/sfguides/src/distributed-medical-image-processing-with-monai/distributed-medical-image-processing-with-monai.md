@@ -118,8 +118,6 @@ PUT file:///path/to/notebooks/03_model_inference.ipynb @MONAI_DB.UTILS.NOTEBOOK 
 
 Continue running the **remaining sections of setup.sql** (after the PUT commands). The script creates three GPU-enabled notebooks with external access for package installation.
 
-> **Note**: All SQL is in setup.sql - don't copy from this guide. The setup.sql file is the single source of truth.
-
 <!-- ------------------------ -->
 ## Run Data Ingestion Notebook
 Duration: 15
@@ -252,8 +250,6 @@ To remove all resources created by this guide, stop any running notebooks first,
 -- DROP WAREHOUSE IF EXISTS MONAI_WH;
 -- DROP ROLE IF EXISTS MONAI_DATA_SCIENTIST;
 ```
-
-> **Important**: Stop any running notebooks before dropping the compute pool. This teardown is also available at the bottom of [setup.sql](https://github.com/Snowflake-Labs/sfguide-distributed-medical-image-processing-with-monai/blob/main/scripts/setup.sql).
 
 <!-- ------------------------ -->
 ## Conclusion and Resources
