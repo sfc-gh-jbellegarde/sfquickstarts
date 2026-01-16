@@ -101,22 +101,29 @@ Run the first part of the setup script to create:
 - **Network Rule + External Access Integration**: For pip install
 - **GPU Compute Pool**: `MONAI_GPU_ML_M_POOL` (GPU_NV_M instances)
 
-### Step 3: Upload Notebooks to Stage
+### Step 3: Import Notebooks
 
-Download the notebooks from the [GitHub repository](https://github.com/Snowflake-Labs/sfguide-distributed-medical-image-processing-with-monai/tree/main/notebooks).
+Download each notebook from GitHub:
+- [01_ingest_data.ipynb](https://github.com/Snowflake-Labs/sfguide-distributed-medical-image-processing-with-monai/blob/main/notebooks/01_ingest_data.ipynb)
+- [02_model_training.ipynb](https://github.com/Snowflake-Labs/sfguide-distributed-medical-image-processing-with-monai/blob/main/notebooks/02_model_training.ipynb)
+- [03_model_inference.ipynb](https://github.com/Snowflake-Labs/sfguide-distributed-medical-image-processing-with-monai/blob/main/notebooks/03_model_inference.ipynb)
 
-The setup.sql script includes commented PUT commands. Update the path and run them using SnowSQL or Snow CLI:
+Then import each notebook into Snowflake:
 
-```bash
-# From SnowSQL - update /path/to/ to your local notebooks folder
-PUT file:///path/to/notebooks/01_ingest_data.ipynb @MONAI_DB.UTILS.NOTEBOOK AUTO_COMPRESS=FALSE OVERWRITE=TRUE;
-PUT file:///path/to/notebooks/02_model_training.ipynb @MONAI_DB.UTILS.NOTEBOOK AUTO_COMPRESS=FALSE OVERWRITE=TRUE;
-PUT file:///path/to/notebooks/03_model_inference.ipynb @MONAI_DB.UTILS.NOTEBOOK AUTO_COMPRESS=FALSE OVERWRITE=TRUE;
-```
-
-### Step 4: Create Container Runtime Notebooks
-
-Continue running the **remaining sections of setup.sql** (after the PUT commands). The script creates three GPU-enabled notebooks with external access for package installation.
+1. In Snowsight, navigate to `Projects` → `Notebooks`
+2. Click the dropdown arrow on **+ Notebook** and select **Import .ipynb file**
+3. Upload a notebook file and configure:
+   - **Name**: Keep the default (e.g., `01_ingest_data`)
+   - **Notebook location**: `MONAI_DB` / `UTILS`
+   - **Runtime**: Select **Run on container**
+   - **Runtime version**: Select a GPU runtime
+   - **Compute pool**: `MONAI_GPU_ML_M_POOL`
+   - **Query warehouse**: `MONAI_WH`
+4. Click **Create**
+5. After the notebook opens, click the **⋮** menu → **Notebook settings**
+6. Click the **External access** tab
+7. Toggle **ON** the `MONAI_ALLOW_ALL_EAI` integration and click **Save**
+8. Repeat steps 2-7 for all 3 notebooks
 
 <!-- ------------------------ -->
 ## Run Data Ingestion Notebook
@@ -124,7 +131,7 @@ Duration: 15
 
 ### Step 1: Open the Notebook
 
-1. In Snowsight, navigate to `Data` → `Notebooks`
+1. In Snowsight, navigate to `Projects` → `Notebooks`
 2. Find `MONAI_01_INGEST_DATA` in the `MONAI_DB.UTILS` schema
 3. Click to open the notebook
 
@@ -134,15 +141,25 @@ Duration: 15
 2. Wait for the Container Runtime to initialize (this may take 2-3 minutes on first run)
 3. You should see the notebook kernel become active
 
-### Step 3: Run All Cells
+### Step 3: Install Dependencies and Restart Kernel
 
-Click **Run All** or execute cells sequentially:
+1. Run the first cell (`!pip install monai`) to install the MONAI library
+2. After installation completes, click the **⋮** menu in the top-right
+3. Select **Restart kernel** to load the new packages
+4. Click **Restart** to confirm
 
-1. **Install MONAI**: Installs the MONAI medical imaging library
-2. **Initialize Session**: Connects to Snowflake and sets query tags
-3. **Setup Directories**: Creates temporary directories for data
-4. **Download Data**: Downloads paired lung CT scans from Zenodo (~266MB)
-5. **Upload to Stages**: Uploads NIfTI files to Snowflake stages
+### Step 4: Run Remaining Cells
+
+After the kernel restarts:
+
+1. Scroll to the **init_session** cell (the cell after the pip install)
+2. Click the **⋮** menu on that cell
+3. Select **Run all below**
+
+This will execute the remaining cells:
+- **Initialize Session**: Connects to Snowflake and sets query tags
+- **Download Data**: Downloads paired lung CT scans from Zenodo (~266MB)
+- **Upload to Stages**: Uploads NIfTI files to Snowflake stages
 
 ![Data Ingestion](assets/01_ingest_data.png)
 
@@ -153,15 +170,22 @@ After successful execution, you should see:
 - Files organized in `lungMasksExp`, `lungMasksInsp`, `scansExp`, `scansInsp` folders
 - All files stored with Snowflake Server-Side Encryption
 
+### Step 5: Exit and Proceed to Next Notebook
+
+1. Click the **←** back arrow in the top-left corner
+2. In the "End session?" dialog, click **End session**
+3. Proceed to the next notebook (02_model_training)
+
 <!-- ------------------------ -->
 ## Run Model Training Notebook
 Duration: 30
 
-### Step 1: Open the Training Notebook
+### Step 1: Open and Run the Training Notebook
 
-1. Navigate to `Data` → `Notebooks`
-2. Open `MONAI_02_MODEL_TRAINING`
+1. Navigate to `Projects` → `Notebooks`
+2. Open your imported `02_model_training` notebook
 3. Click **Start** to initialize Container Runtime
+4. Once active, click **Run all** to execute all cells
 
 ### Step 2: Understand the Training Pipeline
 
@@ -186,25 +210,26 @@ The training loop displays:
 
 ### Step 4: Verify Model Registration
 
-After training completes, verify the model is registered:
+After training completes, the notebook automatically registers the model in the Snowflake Model Registry. You should see `LUNG_CT_REGISTRATION` with version `v1` in the output.
 
-```sql
-SHOW MODELS IN SCHEMA MONAI_DB.UTILS;
-```
+### Step 5: Exit and Proceed to Next Notebook
 
-You should see `LUNG_CT_REGISTRATION` with version `v1`.
+1. Click the **←** back arrow in the top-left corner
+2. In the "End session?" dialog, click **End session**
+3. Proceed to the next notebook (03_model_inference)
 
 <!-- ------------------------ -->
 ## Run Model Inference Notebook
 Duration: 20
 
-### Step 1: Open the Inference Notebook
+### Step 1: Open and Run the Inference Notebook
 
-1. Navigate to `Data` → `Notebooks`
-2. Open `MONAI_03_MODEL_INFERENCE`
+1. Navigate to `Projects` → `Notebooks`
+2. Open your imported `03_model_inference` notebook
 3. Click **Start** to initialize Container Runtime
+4. Once active, click **Run all** to execute all cells
 
-### Step 2: Run Distributed Inference
+### Step 2: Review Inference Results
 
 The notebook:
 
@@ -213,43 +238,24 @@ The notebook:
 3. **Processes Images**: Runs registration on all test cases
 4. **Saves Results**: Writes registered images to stages and metrics to table
 
-### Step 3: Review Results
-
-After inference completes, query the results table:
-
-```sql
-SELECT case_id, model_version, dice_score, ssim_score
-FROM MONAI_DB.RESULTS.MONAI_PAIRED_LUNG_RESULTS
-ORDER BY dice_score DESC;
-```
+The notebook displays results automatically and saves them to `MONAI_DB.RESULTS.MONAI_PAIRED_LUNG_RESULTS`.
 
 ![Inference Results](assets/03_inference.png)
-
-### Step 4: Access Registered Images
-
-Registered images are saved to the results stage:
-
-```sql
-LIST @MONAI_DB.UTILS.RESULTS_STG PATTERN='.*registered.*';
-```
 
 <!-- ------------------------ -->
 ## Cleanup
 Duration: 2
 
-To remove all resources created by this guide, stop any running notebooks first, then uncomment and run:
+To remove all resources created by this guide:
 
-```sql
--- USE ROLE ACCOUNTADMIN;
--- DROP NOTEBOOK IF EXISTS MONAI_DB.UTILS.MONAI_01_INGEST_DATA;
--- DROP NOTEBOOK IF EXISTS MONAI_DB.UTILS.MONAI_02_MODEL_TRAINING;
--- DROP NOTEBOOK IF EXISTS MONAI_DB.UTILS.MONAI_03_MODEL_INFERENCE;
--- DROP COMPUTE POOL IF EXISTS MONAI_GPU_ML_M_POOL;
--- DROP EXTERNAL ACCESS INTEGRATION IF EXISTS MONAI_ALLOW_ALL_EAI;
--- DROP DATABASE IF EXISTS MONAI_DB CASCADE;
--- DROP WAREHOUSE IF EXISTS MONAI_WH;
--- DROP ROLE IF EXISTS MONAI_DATA_SCIENTIST;
-```
+1. **Stop any running notebooks** in Snowsight
+2. **Delete the notebooks** manually in Snowsight (Projects → Notebooks → select → Delete)
+3. Open your **setup.sql** Workspace (the same one you used during setup)
+4. Scroll to the **TEARDOWN SCRIPT** section at the bottom
+5. **Uncomment** the DROP statements
+6. **Run** the teardown commands
+
+The teardown script will remove all compute pools, integrations, database objects, warehouses, and roles created by this guide.
 
 <!-- ------------------------ -->
 ## Conclusion and Resources
@@ -267,16 +273,13 @@ Congratulations! You have successfully built a distributed medical image registr
 ### Related Resources
 
 **Snowflake Documentation:**
-- [Container Runtime Notebooks](https://docs.snowflake.com/en/user-guide/ui-snowsight/notebooks-container-runtime)
-- [GPU Compute Pools](https://docs.snowflake.com/en/developer-guide/snowpark-container-services/compute-pool)
+- [Notebooks on Container Runtime](https://docs.snowflake.com/en/user-guide/ui-snowsight/notebooks-on-spcs)
 - [Model Registry](https://docs.snowflake.com/en/developer-guide/snowpark-ml/model-registry/overview)
-- [Snowflake Stages](https://docs.snowflake.com/en/user-guide/data-load-overview)
 
 **MONAI Resources:**
-- [MONAI Documentation](https://docs.monai.io/)
+- [MONAI Documentation](https://monai.readthedocs.io/en/latest/)
+- [MONAI GitHub](https://github.com/Project-MONAI/MONAI)
 - [MONAI Tutorials](https://github.com/Project-MONAI/tutorials)
-- [Medical Image Registration](https://docs.monai.io/en/stable/networks.html#registration-networks)
 
 **Ray Documentation:**
-- [Ray on Snowflake](https://docs.snowflake.com/en/developer-guide/snowpark-ml/ray)
 - [Ray Train](https://docs.ray.io/en/latest/train/train.html)
