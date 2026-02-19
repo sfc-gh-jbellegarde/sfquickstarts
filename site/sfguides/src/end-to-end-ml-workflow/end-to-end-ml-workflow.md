@@ -2,10 +2,11 @@ author: Elliott Botwick
 id: end-to-end-ml-workflow
 categories: snowflake-site:taxonomy/solution-center/certification/quickstart, snowflake-site:taxonomy/solution-center/certification/certified-solution, snowflake-site:taxonomy/solution-center/includes/architecture, snowflake-site:taxonomy/product/ai, snowflake-site:taxonomy/snowflake-feature/model-development
 language: en
-summary: Learn how to build an end-to-end machine learning workflow in Snowflake, from feature engineering to model deployment and monitoring.
+summary: Build complete ML workflows in Snowflake from data preparation through training, evaluation, deployment, monitoring, and iteration.
 environments: web
 status: Published
 feedback link: https://github.com/Snowflake-Labs/sfguides/issues
+
 
 # Build an End-to-End ML Workflow in Snowflake
 
@@ -34,7 +35,7 @@ You'll build a complete mortgage lending prediction system that:
 5. Provides model explanations using SHAP values
 
 ### What You'll Need
-- Access to a [Snowflake account](https://signup.snowflake.com/) with ACCOUNTADMIN access.  Sign up for a 30-day free trial account, if required.
+- Access to a [Snowflake account](https://signup.snowflake.com/?utm_source=snowflake-devrel&utm_medium=developer-guides&utm_cta=developer-guides) with ACCOUNTADMIN access.  Sign up for a 30-day free trial account, if required.
 - Basic understanding of Python and machine learning concepts
 
 <!-- ------------------------ -->
@@ -180,7 +181,7 @@ except:
     df.show(5)
 ```
 
-> aside positive
+> 
 > IMPORTANT:
 > - Make sure your Snowflake account has the necessary privileges to create tables and execute ML operations
 > - Ensure your warehouse is properly sized for ML workloads

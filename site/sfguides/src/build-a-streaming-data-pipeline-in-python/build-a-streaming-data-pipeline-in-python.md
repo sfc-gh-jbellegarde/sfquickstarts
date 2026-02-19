@@ -2,7 +2,7 @@ author: Brad Culberson, Keith Gaputis
 id: build-a-streaming-data-pipeline-in-python
 categories: snowflake-site:taxonomy/solution-center/certification/quickstart, snowflake-site:taxonomy/product/data-engineering
 language: en
-summary: A guide to using Rowset API, Dynamic Tables, and Streamlit to build a streaming data pipeline in Python
+summary: Build streaming data pipelines in Python with Rowset API, Snowflake Dynamic Tables, and Streamlit for real-time data ingestion. 
 environments: web
 status: Published
 feedback link: https://github.com/Snowflake-Labs/sfguides/issues
@@ -42,7 +42,7 @@ To have fast and efficient near real-time reporting, we will use Dynamic Tables 
 
 ## Launch the Codespace in GitHub
 
-Navigate to the [code repository](https://github.com/sfc-gh-bculberson/Summit2025-DE214) in GitHub.
+Navigate to the [code repository](https://github.com/Snowflake-Labs/Summit2025-DE214) in GitHub.
 
 Click on the green Code Button, go to the Codespaces tab, and click the green Create codespace on main. You must be logged into GitHub to see the Codespaces tab.
 
@@ -253,15 +253,15 @@ select * from LIFT_RIDE limit 10;
 
 We have created a notebook you can use to get started building the streaming data pipeline.
 
-[Download](https://github.com/sfc-gh-bculberson/Summit2025-DE214/raw/refs/heads/main/transformation_notebook.ipynb) the Notebook from Github.
+[Download](https://github.com/Snowflake-Labs/Summit2025-DE214/raw/refs/heads/main/transformation_notebook.ipynb) the Notebook from Github.
 
 Login to Snowsight, click on the bottom left to get the Navigation Menu and Switch Role to STREAMING_INGEST.
 
-![Switch Role](SwitchRole.png)
+![Switch Role](assets/SwitchRole.png)
 
 Click on the +, Notebook, and Import .ipynb File.
 
-![Import .ipynb](ImportNotebook.png)
+![Import .ipynb](assets/ImportNotebook.png)
 
 Name the notebook transformation_notebook, select the db STREAMING_INGEST and the schema STREAMING_INGEST.
 
@@ -271,11 +271,11 @@ This will run everything on one warehouse to keep it as efficient as possible.
 
 Click Create.
 
-![Create Notebook](CreateNotebook.png)
+![Create Notebook](assets/CreateNotebook.png)
 
 Add the Snowflake.Core package which is required by this notebook.
 
-![Create Notebook](ImportSnowflake.Core.png)
+![Create Notebook](assets/ImportSnowflake.Core.png)
 
 Follow the Notebook cells to build the data pipeline objects.
 
@@ -287,19 +287,19 @@ A Streamlit Application will be created to demonstrate how the data prepared pre
 
 To create a new Streamlit Application Click on +, Streamlit App, and New Streamlit App.
 
-![Create Streamlit 1](CreateStreamlit.png)
+![Create Streamlit 1](assets/CreateStreamlit.png)
 
 Choose the App title STREAMING_INGEST, App location in STREAMING_INGEST database and STREAMING_INGEST schema, and run on the warehouse STREAMING_INGEST.
 
-![Create Streamlit 2](CreateStreamlit2.png)
+![Create Streamlit 2](assets/CreateStreamlit2.png)
 
 Add the Package plotly and pandas.
 
-![Import Plotly](ImportPlotly.png)
+![Import Plotly](assets/ImportPlotly.png)
 
-![Import Pandas](ImportPandas.png)
+![Import Pandas](assets/ImportPandas.png)
 
-Overwrite all the contents of the streamlit_app.py file in the editor with the [application code](https://raw.githubusercontent.com/sfc-gh-bculberson/Summit2025-DE214/refs/heads/main/streamlit_app.py) available in the Github repository.
+Overwrite all the contents of the streamlit_app.py file in the editor with the [application code](https://raw.githubusercontent.com/Snowflake-Labs/Summit2025-DE214/refs/heads/main/streamlit_app.py) available in the Github repository.
 
 Run the Streamlit to see the visualizations from the data pipeline built in this guide.
 

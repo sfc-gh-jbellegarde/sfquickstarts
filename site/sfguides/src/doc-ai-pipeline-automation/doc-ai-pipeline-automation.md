@@ -2,10 +2,11 @@ author: Sarathi Balakrishnan
 id: doc-ai-pipeline-automation
 categories: snowflake-site:taxonomy/solution-center/certification/quickstart, snowflake-site:taxonomy/product/ai, snowflake-site:taxonomy/snowflake-feature/transformation, snowflake-site:taxonomy/snowflake-feature/document-ai
 language: en
-summary: Automate document processing using Snowflake Document AI
+summary: Automate document processing pipelines with Snowflake Document AI for invoice extraction, OCR, form digitization, and validation.
 environments: web
 status: Published 
 feedback link: https://github.com/Snowflake-Labs/sfguides/issues
+
 
 
 # Document AI Pipeline Automation
@@ -21,7 +22,7 @@ The pipeline ensures that documents meet business expectations through pre-proce
 
 ### Prerequisites
 - Familiarity with SQL and Python
-- A <a href=https://signup.snowflake.com/>Snowflake account</a>. If you do not have a Snowflake account, you can register for a free trial account.
+- A <a href=https://signup.snowflake.com/?utm_source=snowflake-devrel&utm_medium=developer-guides&utm_cta=developer-guides>Snowflake account</a>. If you do not have a Snowflake account, you can register for a free trial account.
 - A Snowflake account login with a role that has the ability to create role, database, schema, tables, stages and assign permissions. If not, you will need to register for a free trial or use a different role.
 
 ### What You’ll Learn 

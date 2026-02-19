@@ -2,7 +2,7 @@ author: Adrian Benavides, Mrinal Wadhwa, Brad Culberson
 id: build-a-private-custom-api-in-python
 categories: snowflake-site:taxonomy/solution-center/certification/quickstart, snowflake-site:taxonomy/product/data-engineering, snowflake-site:taxonomy/snowflake-feature/build
 language: en
-summary: A guide to building and running a custom private API Powered by Snowflake, Ockam, and Python/Flask
+summary: Use Ockam and Python/Flask to create private Python APIs for Snowflake with VPC connectivity for secure internal application access and integrations.
 environments: web
 status: Published
 feedback link: https://github.com/Snowflake-Labs/sfguides/issues
@@ -22,7 +22,7 @@ accessible at private endpoints that are only available within your enterprise's
 
 This approach ensures that your API cannot be attacked from the Internet and its data will remain highly secure.
 
-![Use Ockam to call private Custom APIs in Snowpark Container Services from anywhere in your enterprise.](./diagram.png)
+![Use Ockam to call private Custom APIs in Snowpark Container Services from anywhere in your enterprise.](assets/diagram.png)
 
 This API consists of reporting endpoints from data stored in Snowflake. After completing this guide, you will have built a custom API built with [Python Flask](https://flask.palletsprojects.com/).
 
@@ -79,9 +79,9 @@ GRANT ROLE DATA_API_ROLE TO ROLE ACCOUNTADMIN;
 <!-- ------------------------ -->
 ## Setting up your Development Environment
 
-The code used in this guide is hosted in GitHub. You will need a new codespace from [this GitHub repository](https://github.com/sfc-gh-bculberson/lab_data_api_python).
+The code used in this guide is hosted in GitHub. You will need a new codespace from [this GitHub repository](https://github.com/Snowflake-Labs/lab_data_api_python).
 
-To create a new codespace, browse to this GitHub [repository](https://github.com/sfc-gh-bculberson/lab_data_api_python) in a browser. You will need to login to GitHub if you are not already logged in to access codespaces. After logging in, click on the green "<> Code" button and "create codespace on main" button.
+To create a new codespace, browse to this GitHub [repository](https://github.com/Snowflake-Labs/lab_data_api_python) in a browser. You will need to login to GitHub if you are not already logged in to access codespaces. After logging in, click on the green "<> Code" button and "create codespace on main" button.
 
 You will then be redirected into codespaces where your development environment will load and all code from the GitHub repository will be loaded in the project.
 
@@ -89,18 +89,18 @@ You will then be redirected into codespaces where your development environment w
 
 The API creates two sets of endpoints, one for using the Snowflake connector:
 
-1. `https://&lt;host&gt;/connector/customers/top10`, which takes the following optional query parameters
+1. `https://<host>/connector/customers/top10`, which takes the following optional query parameters
    -`start_range` - the start date of the range in `YYYY-MM-DD` format. Defaults to `1995-01-01`.
    - `end_range` - the end date of the range in `YYYY-MM-DD` format. Defaults to `1995-03-31`.
-2. `https://&lt;host&gt;/connector/clerk/&lt;CLERKID&gt;/yearly_sales/&lt;YEAR&gt;`, which takes two required path parameters:
+2. `https://<host>/connector/clerk/<CLERKID>/yearly_sales/<YEAR>`, which takes two required path parameters:
    - `CLERKID` - the clerk ID. Use just the numbers, such as `000000001`.
    - `YEAR` - the year to use, such as `1995`.
 
 And the same ones using Snowpark:
-1. `https://&lt;host&gt;/snowpark/customers/top10`, which takes the following optional query parameters:
+1. `https://<host>/snowpark/customers/top10`, which takes the following optional query parameters:
     - `start_range` - the start date of the range in `YYYY-MM-DD` format. Defaults to `1995-01-01`.
     - `end_range` - the end date of the range in `YYYY-MM-DD` format. Defaults to `1995-03-31`.
-2. `https://&lt;host&gt;/snowpark/clerk/&lt;CLERKID&gt;/yearly_sales/&lt;YEAR&gt;`, which takes two required path parameters:
+2. `https://<host>/snowpark/clerk/<CLERKID>/yearly_sales/<YEAR>`, which takes two required path parameters:
     - `CLERKID` - the clerk ID. Use just the numbers, such as `000000001`.
     - `YEAR` - the year to use, such as `1995`.
 
@@ -138,9 +138,9 @@ def customers_top10():
         abort(500, "Error reading from Snowflake. Check the logs for details.")
 ```
 
-You can also review the other endpoints in [connector.py](https://github.com/sfc-gh-bculberson/lab_data_api_python/blob/main/src/connector.py) to see how simple it is to host multiple endpoints.
+You can also review the other endpoints in [connector.py](https://github.com/Snowflake-Labs/lab_data_api_python/blob/main/src/connector.py) to see how simple it is to host multiple endpoints.
 
-If you would also like to see how to build endpoints using the Snowflake Snowpark API, review [snowpark.py](https://github.com/sfc-gh-bculberson/lab_data_api_python/blob/main/src/snowpark.py).
+If you would also like to see how to build endpoints using the Snowflake Snowpark API, review [snowpark.py](https://github.com/Snowflake-Labs/lab_data_api_python/blob/main/src/snowpark.py).
 
 <!-- ------------------------ -->
 ## Building the Application Container
@@ -171,13 +171,13 @@ GRANT READ ON IMAGE REPOSITORY API TO ROLE DATA_API_ROLE;
 SHOW IMAGE REPOSITORIES;
 ```
 
-> aside positive
+> 
 > Note the `repository_url` in the response as that will be needed in the next step.
 
 <!-- ------------------------ -->
 ## Pushing the Container to the Repository
 
-Run the following command in the codespace terminal, replacing the `&lt;repository_url&gt;` with your repository in the previous step, to login to the container repository. You will be prompted for your Snowflake username and password to login to your repository.
+Run the following command in the codespace terminal, replacing the `<repository_url>` with your repository in the previous step, to login to the container repository. You will be prompted for your Snowflake username and password to login to your repository.
 
 ```bash
 docker login <repository_url>
@@ -257,7 +257,7 @@ To verify, check that the DNS name of the API is an internal domain:
 SHOW SERVICES;
 ```
 
-> aside positive
+> 
 > Note the service's DNS name from the `dns_name`. You will need this in the next step when creating the Ockam service.
 
 <!-- ------------------------ -->
@@ -282,7 +282,7 @@ ockam project ticket --usage-count 1 --expires-in 1h \
 ockam project show --jq '.egress_allow_list[]'
 ```
 
-> aside positive
+> 
 > Note the `egress_allow_list` in the response as that will be needed in the next step.
 
 #### Create an Ockam node in Snowpark Container Services
@@ -297,12 +297,12 @@ docker push <repository_url>/ockam
 
 Next, create a new service in Snowflake to run the Ockam node. Run the following command in the Snowflake console or SnowSQL:
 
-> aside positive
+> 
 > IMPORTANT:
 >
-> - Replace `&lt;EGRESS_ALLOW_LIST&gt;` values in `VALUE_LIST` with the `egress_allow_list` you just noted.
-> - Replace `&lt;OCKAM_ENROLLMENT_TICKET&gt;` with the contents of the `ticket` generated with the `ockam project ticket` command. You will find it in the root directory of your codespace.
-> - Replace `&lt;API_DNS_NAME&gt;` with the DNS name of the API service you noted in the previous step.
+> - Replace `<EGRESS_ALLOW_LIST>` values in `VALUE_LIST` with the `egress_allow_list` you just noted.
+> - Replace `<OCKAM_ENROLLMENT_TICKET>` with the contents of the `ticket` generated with the `ockam project ticket` command. You will find it in the root directory of your codespace.
+> - Replace `<API_DNS_NAME>` with the DNS name of the API service you noted in the previous step.
 
 ```sql
 USE ROLE ACCOUNTADMIN;
@@ -459,7 +459,7 @@ Finally, you learned how to manage and clean up the deployed services.
 
 ### Related Resources
 
-- [Code for the project on GitHub](https://github.com/sfc-gh-bculberson/lab_data_api_python)
+- [Code for the project on GitHub](https://github.com/Snowflake-Labs/lab_data_api_python)
 - [Snowpark for Python Developer Guide](https://docs.snowflake.com/en/developer-guide/snowpark/python/index.html)
 - [Ockam Documentation](https://docs.ockam.io/)
 - [Snowpark for Python API Reference](https://docs.snowflake.com/en/developer-guide/snowpark/reference/python/index.html)

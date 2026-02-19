@@ -22,10 +22,6 @@ Questo quickstart tratterà molti argomenti e al termine avrai creato una solida
 
 Allaccia le cinture e preparati a partire!
 
-> aside negative
-> 
-> **Nota**: al 1 febbraio 2023, sia l’[estensione Visual Studio Code di Snowflake](https://marketplace.visualstudio.com/items?itemName=snowflake.snowflake-vsc) che lo [strumento SnowCLI](https://github.com/Snowflake-Labs/snowcli) sono ancora in preview.
-
 
 ### Prerequisiti
 * Familiarità con Python
@@ -47,8 +43,8 @@ Nel corso di questo quickstart esplorerai le seguenti caratteristiche di Snowfla
 * Snowpark DataFrame API
 * Programmabilità di Snowpark Python
 * Elasticità dei warehouse (scalabilità dinamica)
-* Estensione nativa Visual Studio Code di Snowflake (public preview, integrazione Git)
-* SnowCLI (public preview)
+* Estensione nativa Visual Studio Code di Snowflake
+* SnowCLI
 * Task (con attivazione tramite stream)
 * Osservabilità dei task
 * Integrazione delle GitHub Actions (CI/CD)
@@ -211,7 +207,7 @@ Una funzionalità molto utile in Snowflake è la possibilità di dedurre lo sche
 ```
 
 ### Ingestion di dati con COPY
-Per caricare i dati in una tabella Snowflake utilizzeremo il metodo `copy_into_table()` su un DataFrame. Questo metodo crea la tabella di destinazione in Snowflake utilizzando lo schema dedotto (se non esiste) e poi richiama il [comando `COPY INTO &lt;table&gt;`](https://docs.snowflake.com/en/sql-reference/sql/copy-into-table.html) altamente ottimizzato di Snowflake. Questo è il frammento di codice:
+Per caricare i dati in una tabella Snowflake utilizzeremo il metodo `copy_into_table()` su un DataFrame. Questo metodo crea la tabella di destinazione in Snowflake utilizzando lo schema dedotto (se non esiste) e poi richiama il [comando `COPY INTO <table>`](https://docs.snowflake.com/en/sql-reference/sql/copy-into-table.html) altamente ottimizzato di Snowflake. Questo è il frammento di codice:
 
 ``` python
     df.copy_into_table("{}".format(tname))
@@ -373,7 +369,7 @@ Così facendo, lo strumento SnowCLI genera la query SQL riportata sopra e la ese
 ### Panoramica dello strumento SnowCLI
 [SnowCLI](https://github.com/Snowflake-Labs/snowcli) è uno strumento della riga di comando per sviluppatori e viene eseguito come `snow` dalla riga di comando. 
 
-> aside negative
+> 
 **Nota**: non confondere SnowCLI con lo strumento della riga di comando [SnowSQL](https://docs.snowflake.com/en/user-guide/snowsql.html), che è un client che consente di effettuare la connessione a Snowflake per eseguire query SQL e tutte le operazioni DDL e DML e viene eseguito come `snowsql` dalla riga di comando.
 
 SnowCLI semplifica lo sviluppo e la distribuzione dei seguenti oggetti Snowflake:
@@ -392,10 +388,6 @@ Per questo quickstart ci concentreremo sui primi due. Nel caso delle UDF e delle
 * Creare l’oggetto funzione o stored procedure di Snowflake
 
 Questo ti consente anche di sviluppare e testare l’applicazione Python senza preoccuparti di incapsularla in un oggetto di database Snowflake corrispondente.
-
-> aside negative
-> 
-> **Nota**: al 1 febbraio 2023 lo strumento SnowCLI è ancora in preview.
 
 ### Altre informazioni sulle UDF di Snowpark Python
 In questo passaggio abbiamo distribuito un’UDF Python molto semplice su Snowflake. In un passaggio futuro la aggiorneremo per utilizzare un pacchetto di terze parti. Inoltre, poiché l’hai distribuita su Snowflake con il comando SnowCLI, non hai dovuto preoccuparti della sintassi DDL SQL per creare l’oggetto in Snowflake. A scopo di riferimento, tuttavia, consulta la nostra guida per sviluppatori [Creare UDF Python](https://docs.snowflake.com/en/developer-guide/udf/python/udf-python.html).
@@ -746,42 +738,16 @@ Perché il flusso di lavoro GitHub Actions sia in grado di connettersi al tuo ac
 
 Dal repository, fai clic sulla scheda `Settings` nella parte superiore della pagina. Dalla pagina Settings, fai clic su `Secrets and variables` e poi sulla scheda `Actions` nella barra di navigazione sulla sinistra. Dovrebbero essere selezionati i segreti `Actions`. Per ogni segreto elencato sotto, fai clic su `New repository secret` in alto a destra e inserisci il nome elencato sotto insieme al valore appropriato.
 
-<table>
-    <thead>
-        <tr>
-            <th>Nome del segreto</th>
-            <th>Valore del segreto</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>SNOWSQL_ACCOUNT</td>
-            <td>il tuo account</td>
-        </tr>
-        <tr>
-            <td>SNOWSQL_USER</td>
-            <td>il tuo nome utente</td>
-        </tr>
-        <tr>
-            <td>SNOWSQL_PWD</td>
-            <td>la tua password</td>
-        </tr>
-        <tr>
-            <td>SNOWSQL_ROLE</td>
-            <td>HOL_ROLE</td>
-        </tr>
-        <tr>
-            <td>SNOWSQL_WAREHOUSE</td>
-            <td>HOL_WH</td>
-        </tr>
-        <tr>
-            <td>SNOWSQL_DATABASE</td>
-            <td>HOL_DB</td>
-        </tr>
-    </tbody>
-</table>
+| Nome del segreto | Valore del segreto |
+|------------------|-------------------|
+| SNOWSQL_ACCOUNT | il tuo account |
+| SNOWSQL_USER | il tuo nome utente |
+| SNOWSQL_PWD | la tua password |
+| SNOWSQL_ROLE | HOL_ROLE |
+| SNOWSQL_WAREHOUSE | HOL_WH |
+| SNOWSQL_DATABASE | HOL_DB |
 
-> aside positive
+> 
 > 
 >  **Suggerimento**: per maggiori informazioni su come strutturare il nome dell’account in SNOWSQL_ACCOUNT, vedi la discussione del nome dell’account nella [Guida all’installazione del connettore Snowflake per Python](https://docs.snowflake.com/en/user-guide/python-connector-install.html#step-2-verify-your-installation).
 
@@ -789,7 +755,7 @@ Dopo avere aggiunto tutti i segreti, la pagina dovrebbe essere simile alla segue
 
 ![assets/github-actions-secrets.png](assets/github-actions-secrets.png)
 
-> aside positive
+> 
 > 
 >  **Suggerimento**: per gestire in modo ancora migliore i segreti, puoi utilizzare gli [ambienti GitHub Actions](https://docs.github.com/en/actions/reference/environments), che ti consentono di raggruppare i segreti e definire regole di protezione per ciascuno dei tuoi ambienti.
 
@@ -849,8 +815,8 @@ In questo quickstart abbiamo trattato molti argomenti, in particolare:
 * Snowpark DataFrame API
 * Programmabilità di Snowpark Python
 * Elasticità dei warehouse (scalabilità dinamica)
-* Estensione nativa Visual Studio Code di Snowflake (public preview, integrazione Git)
-* SnowCLI (public preview)
+* Estensione nativa Visual Studio Code di Snowflake
+* SnowCLI
 * Task (con attivazione tramite stream)
 * Osservabilità dei task
 * Integrazione delle GitHub Actions (CI/CD)

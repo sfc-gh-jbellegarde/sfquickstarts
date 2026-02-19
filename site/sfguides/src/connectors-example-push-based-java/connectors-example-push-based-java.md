@@ -2,7 +2,7 @@ author: Piotr Hachaj
 id: connectors-example-push-based-java
 categories: snowflake-site:taxonomy/solution-center/certification/quickstart, snowflake-site:taxonomy/product/applications-and-collaboration, snowflake-site:taxonomy/snowflake-feature/commercialize
 language: en
-summary: Overview of building Snowflake push based connectors using Java and Native Apps.
+summary: Build push-based Java connectors for Snowflake Native Apps to ingest data from custom sources, APIs, and enterprise applications.
 environments: web
 status: Published
 feedback link: https://github.com/Snowflake-Labs/sfguides/issues
@@ -27,7 +27,7 @@ an application UI using Streamlit.
 - Creating Native Applications in Snowflake
 - Ingesting data to Snowflake using snowflake-ingestion-sdk
 - Running Snowflake procedures using snowflake-jdbc
-- How to optimize merge for the CDC scenario using [deferred merge approach](img/e5a0394034661f7.pdf)
+- How to optimize merge for the CDC scenario using [deferred merge approach](https://github.com/Snowflake-Labs/sfquickstarts/blob/master/site/sfguides/src/connectors-example-push-based-java/assets/deferred_merge.pdf)
 ![](assets/deferred_merge.pdf)
 
 ## Prepare your local environment

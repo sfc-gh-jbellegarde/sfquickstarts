@@ -2,10 +2,11 @@ author: Vino Duraisamy, Jakub Puchalski
 id: getting-started-with-openflow-for-cdc-on-sql-server
 categories: snowflake-site:taxonomy/solution-center/certification/quickstart, snowflake-site:taxonomy/product/platform, snowflake-site:taxonomy/snowflake-feature/openflow
 language: en
-summary: Through this guide, you will learn how to move beyond slow, nightly batch jobs and stream data in real-time from an operational database like SQL Server directly into Snowflake.
+summary: Through this guide, you will learn how to move beyond slow, nightly batch jobs and stream data in real-time from an operational database like SQL Server directly into Snowflake. 
 environments: web
 status: Published 
 feedback link: https://github.com/Snowflake-Labs/sfguides/issues
+
 
 # Getting Started with Snowflake Openflow for Change Data Capture from SQL Server
 <!-- ------------------------ -->
@@ -26,7 +27,7 @@ By the end of this guide, you will learn to work with:
 
 > NOTE
 >
-> Please note that Openflow on SPCS is not available on Snowflake's free [trial account](https://signup.snowflake.com/). Please input credit card details to work through this quickstart or use your own Snowflake accounts.
+> Please note that Openflow on SPCS is not available on Snowflake's free [trial account](https://signup.snowflake.com/?utm_source=snowflake-devrel&utm_medium=developer-guides&utm_cta=developer-guides). Please input credit card details to work through this quickstart or use your own Snowflake accounts.
 
 ### What is Snowflake Openflow?
 
@@ -65,7 +66,7 @@ A Snowflake account with Snowflake Openflow and Snowpark Container Services acce
 
 > NOTE
 >
-> Please note that Openflow on SPCS is not available on Snowflake's free [trial account](https://signup.snowflake.com/). Please input credit card details to work through this quickstart or use your own Snowflake accounts.
+> Please note that Openflow on SPCS is not available on Snowflake's free [trial account](https://signup.snowflake.com/?utm_source=snowflake-devrel&utm_medium=developer-guides&utm_cta=developer-guides). Please input credit card details to work through this quickstart or use your own Snowflake accounts.
 
 <!------------------>
 

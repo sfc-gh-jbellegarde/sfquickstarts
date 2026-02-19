@@ -7,10 +7,13 @@ on:
 jobs:
   publish:
     runs-on: ubuntu-latest
-    environment:
-      name: production
     permissions:
       contents: read
+    outputs:
+      has_relevant_changes: ${{ steps.detect.outputs.has_relevant_changes }}
+      quickstart_batches_json: ${{ steps.detect.outputs.quickstart_batches_json }}
+      pr_number: ${{ steps.pr.outputs.number }}
+      relevant_changed_files_json: ${{ steps.detect.outputs.relevant_changed_files_json }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -19,32 +22,55 @@ jobs:
 
       - name: Determine changed quickstart folders
         id: detect
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: |
-          # Get changed files from the push
-          # For push events, compare the before and after commits
+          # Get all changed files using GitHub API (same approach as validate-and-stage.yml)
+          # This properly handles renames by providing explicit status info
           before_commit="${{ github.event.before }}"
           after_commit="${{ github.sha }}"
+          repo="${{ github.repository }}"
           
-          # Handle first push to branch (no before commit)
-          if [ "$before_commit" = "0000000000000000000000000000000000000000" ]; then
-            # First push - check HEAD against previous commit
-            changed_files=$(git diff --name-only HEAD^ HEAD || git ls-tree --name-only -r HEAD)
-          else
-            changed_files=$(git diff --name-only "$before_commit" "$after_commit")
-          fi
+          # Use GitHub Compare API to get files with status
+          files_json=$(curl -sS -H "Authorization: Bearer $GH_TOKEN" \
+            -H "Accept: application/vnd.github+json" \
+            "https://api.github.com/repos/$repo/compare/${before_commit}...${after_commit}?per_page=300")
           
-          # Filter to quickstart folders under site/sfguides/src whose names do not start with an underscore
-          quickstart_names=$(echo "$changed_files" | grep '^site/sfguides/src/' | sed -E 's|^site/sfguides/src/([^/]+)/.*|\1|' | grep -v '^_' | sort -u)
+          # Filter files: exclude removed, include only site/sfguides/src/, exclude _* folders
+          # For renamed files, this uses the NEW filename (which is in .filename)
+          changed_files=$(echo "$files_json" | jq -r '
+            .files[]? | 
+            select(.status != "removed") | 
+            .filename | 
+            select(startswith("site/sfguides/src/")) | 
+            select(test("/_") | not)
+          ')
+          
+          # Filter to only relevant files:
+          # 1. Markdown files in root of quickstart directories (not in subdirectories)
+          # 2. Image files in root of /assets/ folders (not in subdirectories)
+          # Pattern for markdown in root: site/sfguides/src/{folder}/{filename}.md
+          # Pattern for images in assets root: site/sfguides/src/{folder}/assets/{filename}.{image_ext}
+          relevant_files=$(echo "$changed_files" | grep -E '^site/sfguides/src/[^/]+/([^/]+\.md|assets/[^/]+\.(jpg|jpeg|png|gif|svg|webp|bmp|ico))$' || true)
+          
+          # Extract quickstart names from relevant files only
+          quickstart_names=$(echo "$relevant_files" | sed -E 's|^site/sfguides/src/([^/]+)/.*|\1|' | grep -v '^_' | sort -u)
+          
+          echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+          echo "Relevant files changed (markdown in root + images in assets):"
+          echo "$relevant_files"
+          echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+          echo "Quickstart folders to publish:"
+          echo "$quickstart_names"
+          echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
           
           has_relevant_changes=false
           if [ -z "$quickstart_names" ]; then
             quickstart_names_json="[]"
-            quickstart_folders_json="[]"
             quickstart_name=""
             has_relevant_changes=false
           else
             objs='[]'
-            names_arr='[]'
             while IFS= read -r name; do
               [ -z "$name" ] && continue
               lang=""
@@ -75,17 +101,20 @@ jobs:
                 if [[ "$lang" =~ ^\'.*\'$ ]]; then lang=${lang:1:${#lang}-2}; fi
               fi
               objs=$(echo "$objs" | jq -c --arg name "$name" --arg lang "$lang" '. + [{name:$name, language:$lang}]')
-              names_arr=$(echo "$names_arr" | jq -c --arg name "$name" '. + [$name]')
             done <<< "$quickstart_names"
-            quickstart_names_json="$objs"
-            quickstart_folders_json=$(echo "$names_arr" | jq -c .)
-            quickstart_name=$(printf '%s\n' "$quickstart_names" | head -n1)
+            # Chunk quickstarts into batches of 50 to stay under GitHub's 256 matrix job limit
+            batch_size=50
+            quickstart_batches_json=$(echo "$objs" | jq -c --argjson size "$batch_size" '
+              [range(0; length; $size) as $i | .[$i:$i+$size]]
+            ')
             has_relevant_changes=true
           fi
-          echo "quickstart_names_json=$quickstart_names_json" >> $GITHUB_OUTPUT
-          echo "quickstart_folders_json=$quickstart_folders_json" >> $GITHUB_OUTPUT
-          echo "quickstart_name=$quickstart_name" >> $GITHUB_OUTPUT
+          echo "quickstart_batches_json=${quickstart_batches_json:-[]}" >> $GITHUB_OUTPUT
           echo "has_relevant_changes=$has_relevant_changes" >> $GITHUB_OUTPUT
+          # Output only relevant changed files as JSON array for use in webhook payload
+          # (markdown in root of quickstart folders + images in assets folders)
+          relevant_changed_files_json=$(echo "$relevant_files" | jq -R -s -c 'split("\n") | map(select(length>0))')
+          echo "relevant_changed_files_json=$relevant_changed_files_json" >> $GITHUB_OUTPUT
 
       - name: Get PR number from commit
         id: pr
@@ -95,25 +124,153 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
 
-      - name: Call Workato production webhook
-        if: steps.detect.outputs.has_relevant_changes == 'true'
+  call-webhooks:
+    needs: publish
+    if: needs.publish.outputs.has_relevant_changes == 'true'
+    runs-on: ubuntu-latest
+    environment:
+      name: production
+    permissions:
+      contents: read
+    strategy:
+      matrix:
+        batch: ${{ fromJson(needs.publish.outputs.quickstart_batches_json) }}
+      max-parallel: 1  # Sequential execution to avoid rate limits
+      fail-fast: false  # Continue processing other batches even if one fails
+    steps:
+      - name: Process batch of quickstarts
         env:
           WORKATO_PROD_WEBHOOK_URL: ${{ secrets.WORKATO_PROD_WEBHOOK_URL }}
+          BATCH_JSON: ${{ toJson(matrix.batch) }}
+          PR_NUMBER: ${{ needs.publish.outputs.pr_number }}
+          RELEVANT_CHANGED_FILES_JSON: ${{ needs.publish.outputs.relevant_changed_files_json }}
         run: |
           if [ -z "$WORKATO_PROD_WEBHOOK_URL" ]; then
-            echo "WORKATO_PROD_URL is not set. Cannot call production webhook." >&2
+            echo "WORKATO_PROD_WEBHOOK_URL is not set. Cannot call production webhook." >&2
             exit 1
           fi
-          payload=$(jq -n \
-            --arg repo "$GITHUB_REPOSITORY" \
-            --arg sha "$GITHUB_SHA" \
-            --arg ref "$GITHUB_REF" \
-            --arg env "prod" \
-            --arg pr_num "${{ steps.pr.outputs.number }}" \
-            --arg qname "${{ steps.detect.outputs.quickstart_name }}" \
-            --argjson qnames '${{ steps.detect.outputs.quickstart_names_json }}' \
-            --argjson qfolders '${{ steps.detect.outputs.quickstart_folders_json }}' \
-            '{repo:$repo, commit_sha:$sha, ref:$ref, environment:$env, pr_number:$pr_num, quickstart_name:$qname, quickstart_names:$qnames, quickstart_folders:$qfolders}')
-          echo "$payload" | jq .
-          response=$(curl -sS -X POST "$WORKATO_PROD_WEBHOOK_URL" -H "Content-Type: application/json" --data-raw "$payload")
-          echo "$response" | cat
+          
+          # Process each quickstart in this batch sequentially
+          echo "$BATCH_JSON" | jq -c '.[]' | while read -r qs; do
+            qname=$(echo "$qs" | jq -r '.name')
+            qlang=$(echo "$qs" | jq -r '.language')
+            
+            echo "======================================"
+            echo "Processing quickstart: $qname"
+            echo "Language: $qlang"
+            echo "======================================"
+            
+            # Create single-item array for quickstart_names to match expected format
+            qnames_array=$(jq -n --arg name "$qname" --arg lang "$qlang" '[{name:$name, language:$lang}]')
+            
+            # Filter relevant changed files to only those in this quickstart's directory
+            # Transform to array of objects with 'filename' property
+            changed_files_for_qs=$(echo "$RELEVANT_CHANGED_FILES_JSON" | jq -c --arg qname "$qname" '[.[] | select(startswith("site/sfguides/src/" + $qname + "/")) | {filename: .}]')
+            
+            payload=$(jq -n \
+              --arg repo "$GITHUB_REPOSITORY" \
+              --arg sha "$GITHUB_SHA" \
+              --arg ref "$GITHUB_REF" \
+              --arg env "prod" \
+              --arg pr_num "$PR_NUMBER" \
+              --arg qname "$qname" \
+              --argjson qnames "$qnames_array" \
+              --argjson changed_files "$changed_files_for_qs" \
+              '{repo:$repo, commit_sha:$sha, ref:$ref, environment:$env, pr_number:$pr_num, quickstart_name:$qname, quickstart_names:$qnames, changed_files:$changed_files}')
+            
+            echo "Payload:"
+            echo "$payload" | jq .
+            
+            max_retries=3
+            retry_count=0
+            wait_time=60
+            success=false
+            
+            while [ $retry_count -lt $max_retries ]; do
+              response=$(curl -sS -w "\n%{http_code}" -X POST "$WORKATO_PROD_WEBHOOK_URL" -H "Content-Type: application/json" --data-raw "$payload")
+              http_code=$(echo "$response" | tail -n1)
+              response_body=$(echo "$response" | sed '$d')
+              
+              echo "Response:"
+              echo "$response_body" | cat
+              echo "HTTP Status: $http_code"
+              
+              if [ "$http_code" -ge 200 ] && [ "$http_code" -lt 300 ]; then
+                echo "✓ Webhook call successful (HTTP $http_code)"
+                success=true
+                break
+              fi
+              
+              if echo "$response_body" | grep -qi "Rate limit reached: 6000 requests per 5m0s"; then
+                retry_count=$((retry_count + 1))
+                if [ $retry_count -lt $max_retries ]; then
+                  echo "⚠ Rate limit reached. Waiting 5 minutes before retry $retry_count/$max_retries..."
+                  sleep 300
+                else
+                  echo "✗ Rate limit reached. Max retries exceeded." >&2
+                  exit 1
+                fi
+              elif [ "$http_code" -ge 500 ]; then
+                retry_count=$((retry_count + 1))
+                if [ $retry_count -lt $max_retries ]; then
+                  echo "⚠ Server error (HTTP $http_code). Waiting ${wait_time}s before retry $retry_count/$max_retries..."
+                  sleep $wait_time
+                  wait_time=$((wait_time * 2))
+                else
+                  echo "✗ Server error (HTTP $http_code). Max retries exceeded." >&2
+                  exit 1
+                fi
+              else
+                echo "✗ Webhook call failed with HTTP $http_code" >&2
+                exit 1
+              fi
+            done
+            
+            if [ "$success" = true ]; then
+              echo "Waiting 150 seconds before processing next quickstart..."
+              sleep 150
+            fi
+          done
+
+# update-manifest:
+#   needs: [publish, call-webhooks]
+#   if: |
+#     always() &&
+#     needs.publish.outputs.has_relevant_changes == 'true' &&
+#     needs.call-webhooks.result == 'success'
+#   runs-on: ubuntu-latest
+#   permissions:
+#     contents: write
+#   steps:
+#     - name: Checkout repository
+#       uses: actions/checkout@v4
+#       with:
+#         sparse-checkout: |
+#           site/sfguides/src/*/*.md
+#           site/sfguides/src/_shared_assets
+#           scripts/generate_manifest
+#         sparse-checkout-cone-mode: false
+#
+#     - name: Set up Python
+#       uses: actions/setup-python@v5
+#       with:
+#         python-version: '3.x'
+#
+#     - name: Generate manifest
+#       run: |
+#         echo "Running manifest generator..."
+#         python scripts/generate_manifest/manifest\ generator.py
+#         
+#     - name: Commit and push manifest if changed
+#       run: |
+#         git config user.name "github-actions[bot]"
+#         git config user.email "github-actions[bot]@users.noreply.github.com"
+#         
+#         if git diff --quiet site/sfguides/src/_shared_assets/quickstart-manifest.json; then
+#           echo "No changes to manifest file"
+#         else
+#           echo "Manifest file has changes, committing..."
+#           git add site/sfguides/src/_shared_assets/quickstart-manifest.json
+#           git commit -m "chore: update quickstart manifest [skip ci]"
+#           git push
+#         fi

@@ -1,16 +1,19 @@
-author: gflomo@hex.tech
+author: Gabe Flomo [Hex] 
 id: hex
 categories: snowflake-site:taxonomy/solution-center/certification/quickstart, snowflake-site:taxonomy/solution-center/certification/partner-solution, snowflake-site:taxonomy/product/data-engineering
 language: en
-summary: This lab will walk you through how to use Snowflake and Hex.
+summary: This lab will walk you through how to use Snowflake and Hex. 
 environments: web
 status: Published
 feedback link: https://github.com/Snowflake-Labs/sfguides/issues
 
+<!-- contact info: gflomo [at] hex.tech --> 
+
+
 # Building and deploying a time series forecast with Hex + Snowflake
 
 <!-- ------------------------ -->
-## Lab Overview 
+## Overview 
 
 In this demo, we will play the role of a data scientist at a large restaurant chain tasked with helping the restaurant operators optimize their staffing schedule. To do this, we would like to forecast the hourly foot traffic for each of the restaurants stores in 200 different locations. Let's see how we can use Hex in collaboration with Snowflake/Snowpark to build an XGBoost forecasting model to help with the task at hand. 
 
@@ -29,7 +32,7 @@ In this demo, we will play the role of a data scientist at a large restaurant ch
 
 
 ### What You’ll Need
-- A [Snowflake](https://signup.snowflake.com/?utm_cta=quickstarts_) Account (if you are using an enterprise account through your organization, it is unlikely that you will have the privileges to use the `ACCOUNTADMIN` role, which is required for this lab).
+- A [Snowflake](https://signup.snowflake.com/?utm_source=snowflake-devrel&utm_medium=developer-guides&utm_cta=developer-guides) Account (if you are using an enterprise account through your organization, it is unlikely that you will have the privileges to use the `ACCOUNTADMIN` role, which is required for this lab).
 
 ### What You’ll Build
 An end-to-end Machine Learning pipeline to forecast hourly traffic for a restaurant chain using Hex, Snowflake, Snowpark, and XGBoost.
@@ -47,7 +50,7 @@ This pipeline will:
 <!-- ------------------------ -->
 ## Creating a Snowflake account
 
-Head over to the [Snowflake](https://signup.snowflake.com/?utm_cta=quickstarts_) sign-up page and register for a free account. Once you've registered, you'll get an email that will bring you to Snowflake so that you can sign in.
+Head over to the [Snowflake](https://signup.snowflake.com/?utm_source=snowflake-devrel&utm_medium=developer-guides&utm_cta=developer-guides) sign-up page and register for a free account. Once you've registered, you'll get an email that will bring you to Snowflake so that you can sign in.
 
 ## Connecting Snowflake with Hex
 
@@ -123,7 +126,9 @@ Once downloaded, head over to Hex and you'll see a button to import a project in
 
 ![](assets/vhol_import.gif)
 
-Now that you've got your project imported, you will find yourself in the [Logic view](https://learn.hex.tech/docs/develop-logic/logic-view-overview) of a Hex project. The Logic view is a notebook-like interface made up of cells such as code cells, markdown cells, input parameters and more! On the far left side, you'll see a control panel that will allow you to do things like upload files, import data connections, or search your project. Before we dive into the code, we'll need to:
+Now that you've got your project imported, you will find yourself in the [Logic view](https://learn.hex.tech/docs/develop-logic/logic-view-overview) of a Hex project. The Logic view is a notebook-like interface made up of cells such as code cells, markdown cells, input parameters and more! On the far left side, you'll see a control panel that will allow you to do things like upload files, import data connections, or search your project. 
+
+Before we dive into the code, we'll need to:
 1. Change our compute profile to run Python 3.8
 2. Import our Snowflake data connection
 

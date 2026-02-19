@@ -2,11 +2,10 @@ authors: Jeremiah Hansen
 id: data-engineering-pipelines-with-snowpark-python
 categories: snowflake-site:taxonomy/solution-center/certification/quickstart, snowflake-site:taxonomy/solution-center/certification/community-sourced, snowflake-site:taxonomy/solution-center/includes/architecture, snowflake-site:taxonomy/product/data-engineering, snowflake-site:taxonomy/snowflake-feature/transformation
 language: en
-summary: This guide will provide step-by-step details for building data engineering pipelines with Snowpark Python
+summary: Build robust data engineering pipelines with Snowpark Python for ELT, CDC processing, and data transformations.
 environments: web
 status: Published 
 feedback link: https://github.com/Snowflake-Labs/sfguides/issues
-open in snowflake link: https://app.snowflake.com/templates?template=data_engineering_pipelines_snowpark_python&utm_source=build&utm_medium=templates&utm_campaign=guides&utm_content=nov25
 
 
 # Data Engineering Pipelines with Snowpark Python
@@ -23,9 +22,6 @@ This Quickstart will cover a lot of ground, and by the end you will have built a
 
 
 So buckle up and get ready!
-
-
-> **Note** - As of 3/7/2024, the [SnowCLI Tool](https://github.com/Snowflake-Labs/snowcli) is still in preview.
 
 
 ### Prerequisites
@@ -64,10 +60,6 @@ You will need the following things before beginning:
 * GitHub account
     * **A GitHub account**. If you don't already have a GitHub account you can create one for free. Visit the [Join GitHub](https://github.com/signup) page to get started.
 
-> Note: You can now run this entire quickstart as a Snowflake Notebook in your Snowsight UI. Download this [ipynb file](https://github.com/Snowflake-Labs/snowflake-demo-notebooks/blob/main/Data%20Engineering%20Pipelines%20with%20Snowpark%20Python/Data%20Engineering%20Pipelines%20with%20Snowpark%20Python.ipynb) and import it to your Snowflake account as shown below.
-
-![notebook_callout](assets/notebook.png)
-
 ### What You’ll Build
 During this Quickstart you will accomplish the following things:
 
@@ -82,10 +74,6 @@ During this Quickstart you will accomplish the following things:
 
 <!-- ------------------------ -->
 ## Quickstart Setup
-
-> Note: You can now run this entire quickstart as a Snowflake Notebook in your Snowsight UI. Download this [ipynb file](https://github.com/Snowflake-Labs/snowflake-demo-notebooks/blob/main/Data%20Engineering%20Pipelines%20with%20Snowpark%20Python/Data%20Engineering%20Pipelines%20with%20Snowpark%20Python.ipynb) and import it to your Snowflake account as shown below.
-
-![notebook_callout](assets/notebook.png)
 
 ### Fork the Quickstart Repository and Enable GitHub Actions
 You'll need to create a fork of the repository for this Quickstart in your GitHub account. Visit the [Data Engineering Pipelines with Snowpark Python associated GitHub Repository](https://github.com/Snowflake-Labs/sfguide-data-engineering-with-snowpark-python) and click on the "Fork" button near the top right. Complete any required fields and click "Create Fork".
@@ -202,7 +190,7 @@ One very helpful feature in Snowflake is the ability to infer the schema of file
 ```
 
 ### Data Ingestion with COPY
-In order to load the data into a Snowflake table we will use the `copy_into_table()` method on a DataFrame. This method will create the target table in Snowflake using the inferred schema (if it doesn't exist), and then call the highly optimized Snowflake [`COPY INTO &lt;table&gt;` Command](https://docs.snowflake.com/en/sql-reference/sql/copy-into-table.html). Here is the code snippet:
+In order to load the data into a Snowflake table we will use the `copy_into_table()` method on a DataFrame. This method will create the target table in Snowflake using the inferred schema (if it doesn't exist), and then call the highly optimized Snowflake [`COPY INTO <table>` Command](https://docs.snowflake.com/en/sql-reference/sql/copy-into-table.html). Here is the code snippet:
 
 ```python
     df.copy_into_table("{}".format(tname))
@@ -383,8 +371,6 @@ For this Quickstart we will be focused on the first two. And for Snowpark Python
 * Creating the Snowflake function or stored procedure object
 
 This also allows you to develop and test your Python application without having to worry about wrapping it in a corresponding Snowflake database object.
-
-> **Note** -  As of 3/7/2024, the [SnowCLI Tool](https://github.com/Snowflake-Labs/snowcli) is still in preview.
 
 ### More on Snowpark Python UDFs
 In this step we deployed a very simple Python UDF to Snowflake. In a future step will update it to use a third-party package. And because we deployed it to Snowflake with the SnowCLI command you didn't have to worry about the SQL DDL Syntax to create the object in Snowflake. But for reference please check out our [Writing Python UDFs](https://docs.snowflake.com/en/developer-guide/udf/python/udf-python.html) developer guide.
@@ -758,40 +744,14 @@ In order for your GitHub Actions workflow to be able to connect to your Snowflak
 
 From the repository, click on the `Settings` tab near the top of the page. From the Settings page, click on the `Secrets and variables` then `Actions` tab in the left hand navigation. The `Actions` secrets should be selected. For each secret listed below click on `New repository secret` near the top right and enter the name given below along with the appropriate value (adjusting as appropriate).
 
-<table>
-    <thead>
-        <tr>
-            <th>Secret name</th>
-            <th>Secret value</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>SNOWFLAKE_ACCOUNT</td>
-            <td>myaccount</td>
-        </tr>
-        <tr>
-            <td>SNOWFLAKE_USER</td>
-            <td>myusername</td>
-        </tr>
-        <tr>
-            <td>SNOWFLAKE_PASSWORD</td>
-            <td>mypassword</td>
-        </tr>
-        <tr>
-            <td>SNOWFLAKE_ROLE</td>
-            <td>HOL_ROLE</td>
-        </tr>
-        <tr>
-            <td>SNOWFLAKE_WAREHOUSE</td>
-            <td>HOL_WH</td>
-        </tr>
-        <tr>
-            <td>SNOWFLAKE_DATABASE</td>
-            <td>HOL_DB</td>
-        </tr>
-    </tbody>
-</table>
+| Secret name | Secret value |
+|-------------|--------------|
+| SNOWFLAKE_ACCOUNT | myaccount |
+| SNOWFLAKE_USER | myusername |
+| SNOWFLAKE_PASSWORD | mypassword |
+| SNOWFLAKE_ROLE | HOL_ROLE |
+| SNOWFLAKE_WAREHOUSE | HOL_WH |
+| SNOWFLAKE_DATABASE | HOL_DB |
 
 
 >  **Tip** - For more details on how to structure the account name in SNOWFLAKE_ACCOUNT, see the account name discussion in [the Snowflake Python Connector install guide](https://docs.snowflake.com/en/user-guide/python-connector-install.html#step-2-verify-your-installation).
